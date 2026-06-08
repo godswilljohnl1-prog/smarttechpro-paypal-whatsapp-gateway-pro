@@ -1,0 +1,270 @@
+/**
+ * SmartTechPro PayPal WhatsApp Gateway Pro Admin UI styles
+ */
+
+.stpw-admin-wrap {
+    margin: 20px 20px 0 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+/* Dashboard stat grid */
+.stpw-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 20px 0 30px 0;
+}
+
+/* Card */
+.stpw-card {
+    background: #fff;
+    border: 1px solid #e5e5e1;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    border-radius: 6px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.stpw-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+}
+
+.stpw-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.stpw-card-icon .dashicons {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+.stpw-card-info h3 {
+    margin: 0;
+    font-size: 13px;
+    color: #646970;
+    font-weight: 500;
+}
+
+.stpw-stat-val {
+    margin: 4px 0 0 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1d2327;
+    line-height: 1.2;
+}
+
+/* Accent Colors */
+.bg-orange::before { background-color: #f59e0b; }
+.bg-orange .stpw-card-icon { background-color: #f59e0b; }
+
+.bg-blue::before { background-color: #3b82f6; }
+.bg-blue .stpw-card-icon { background-color: #3b82f6; }
+
+.bg-green::before { background-color: #10b981; }
+.bg-green .stpw-card-icon { background-color: #10b981; }
+
+.bg-red::before { background-color: #ef4444; }
+.bg-red .stpw-card-icon { background-color: #ef4444; }
+
+.bg-teal::before { background-color: #0d9488; }
+.bg-teal .stpw-card-icon { background-color: #0d9488; }
+
+.bg-purple::before { background-color: #8b5cf6; }
+.bg-purple .stpw-card-icon { background-color: #8b5cf6; }
+
+/* Multi-column layout */
+.stpw-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+@media (max-width: 960px) {
+    .stpw-two-col {
+        grid-template-columns: 1fr;
+    }
+}
+
+.stpw-card-block {
+    background: #fff;
+    border: 1px solid #e5e5e1;
+    border-radius: 6px;
+    padding: 24px;
+}
+
+.stpw-card-block h2 {
+    margin: 0 0 20px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1d2327;
+    border-bottom: 1px solid #f0f0f1;
+    padding-bottom: 12px;
+}
+
+/* Badges */
+.stpw-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 9999px;
+    text-transform: uppercase;
+}
+
+.badge-awaiting-paypal {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.badge-paypal-review {
+    background-color: #dbeafe;
+    color: #2563eb;
+}
+
+.badge-paypal-paid {
+    background-color: #d1fae5;
+    color: #059669;
+}
+
+.badge-paypal-failed {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+/* Status helper row action color buttons */
+.stpw-row-actions a.button-small {
+    margin-right: 4px;
+}
+
+.bg-primary-green {
+    background-color: #059669 !important;
+    border-color: #059669 !important;
+    color: white !important;
+    text-shadow: none !important;
+}
+
+.bg-primary-green:hover {
+    background-color: #047857 !important;
+    border-color: #047857 !important;
+}
+
+/* Logging list styling */
+.stpw-log-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.stpw-log-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    font-size: 13px;
+    gap: 8px;
+}
+
+.stpw-log-item:last-child {
+    border-bottom: none;
+}
+
+.stpw-log-time {
+    color: #8c8f94;
+    font-size: 11px;
+    width: 105px;
+    flex-shrink: 0;
+}
+
+.stpw-log-action {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 1px 6px;
+    border-radius: 4px;
+    display: inline-block;
+    letter-spacing: 0.5px;
+}
+
+/* Log type badges */
+.action-Gateway-Enabled { background-color: #e0f2fe; color: #0369a1; }
+.action-Gateway-Disabled { background-color: #f3f4f6; color: #374151; }
+.action-WhatsApp-Redirect { background-color: #dcfce7; color: #15803d; }
+.action-Order-Created { background-color: #fef8c3; color: #a16207; }
+.action-Review { background-color: #e0e7ff; color: #4338ca; }
+.action-Paid { background-color: #d1fae5; color: #065f46; }
+.action-Failed { background-color: #fee2e2; color: #991b1b; }
+.action-Reminder-Sent { background-color: #fae8ff; color: #86198f; }
+.action-Customer-Email-Sent { background-color: #f3e8ff; color: #6b21a8; }
+.action-Admin-Email-Sent { background-color: #fed7aa; color: #9a3412; }
+
+.stpw-log-msg {
+    color: #3c434a;
+    flex-grow: 1;
+}
+
+.stpw-log-user {
+    color: #8c8f94;
+    font-size: 11px;
+}
+
+/* Filter layouts */
+.stpw-tabnav {
+    margin-bottom: 15px;
+    background: #fff;
+    padding: 10px 15px;
+    border: 1px solid #e5e5e1;
+    border-radius: 6px;
+}
+
+.stpw-tabnav select, .stpw-tabnav input[type="text"], .stpw-tabnav input[type="number"] {
+    margin-right: 10px;
+}
+
+.stpw-empty-state, .stpw-empty-table {
+    text-align: center !important;
+    padding: 40px !important;
+    color: #8c8f94;
+}
+
+.stpw-empty-state .dashicons {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 15px;
+}
+
+/* Phone style Link */
+.stpw-phone-whatsapp {
+    color: #059669;
+    text-decoration: none;
+    font-weight: 500;
+}
+.stpw-phone-whatsapp:hover {
+    text-decoration: underline;
+}
+
+.stpw-table-log-msg {
+    margin: 0;
+    max-height: 80px;
+    overflow-y: auto;
+    font-size: 12px;
+}

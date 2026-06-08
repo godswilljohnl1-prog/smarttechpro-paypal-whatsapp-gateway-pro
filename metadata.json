@@ -1,0 +1,6 @@
+{
+  "name": "PayPal WhatsApp Gateway Pro Simulator",
+  "description": "Interactive administrator sandbox, customer checkout simulator, and production-ready ZIP builder for the SmartTechPro PayPal WhatsApp Gateway Pro WooCommerce plugin.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
