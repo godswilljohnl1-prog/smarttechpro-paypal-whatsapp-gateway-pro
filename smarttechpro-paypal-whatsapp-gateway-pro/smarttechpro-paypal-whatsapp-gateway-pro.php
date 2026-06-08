@@ -37,7 +37,6 @@ require_once STPW_PATH . 'includes/class-hpos.php';
 require_once STPW_PATH . 'includes/class-logger.php';
 require_once STPW_PATH . 'includes/class-order-statuses.php';
 require_once STPW_PATH . 'includes/class-whatsapp.php';
-require_once STPW_PATH . 'includes/class-gateway.php';
 require_once STPW_PATH . 'includes/class-emails.php';
 require_once STPW_PATH . 'includes/class-admin-dashboard.php';
 require_once STPW_PATH . 'includes/class-admin-orders.php';
@@ -55,6 +54,9 @@ function stpw_init_gateway_pro() {
     if (!class_exists('WooCommerce')) {
         return;
     }
+
+    // Load gateway class safely only after ensuring WooCommerce is active
+    require_once STPW_PATH . 'includes/class-gateway.php';
 
     // Register WooCommerce Gateway Class
     add_filter('woocommerce_payment_gateways', 'stpw_add_gateway_class');

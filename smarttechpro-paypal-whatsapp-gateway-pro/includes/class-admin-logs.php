@@ -91,11 +91,6 @@ class STPW_Admin_Logs {
                     <div class="alignleft actions">
                         <select name="filter_action">
                             <option value=""><?php _e('Filter by Action', 'smarttechpro-paypal-whatsapp-gateway-pro'); ?></option>
-                            <?php foreach ($unique_actions as $action_name) : ?>
-                                <option value="<?php echo esc_attr($action_name); ?>" <?php selected($filter_action, $action_name); ?>>
-                                    <?php echo esc_html($action_name); ?>
-                                </option>
-                            <?php end0; ?>
                             <?php foreach ($unique_actions as $act) : ?>
                                 <option value="<?php echo esc_attr($act); ?>" <?php selected($filter_action, $act); ?>><?php echo esc_html($act); ?></option>
                             <?php endforeach; ?>
