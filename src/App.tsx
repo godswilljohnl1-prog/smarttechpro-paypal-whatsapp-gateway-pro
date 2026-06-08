@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { 
   Settings, 
   ShoppingCart, 
+  ShoppingBag,
   LayoutDashboard, 
   Receipt, 
   Terminal, 
@@ -410,21 +411,21 @@ export default function App() {
   };
 
   return (
-    <div id="sandbox-root" className="min-h-screen bg-slate-900 text-slate-100 flex flex-col font-sans select-none antialiased">
+    <div id="sandbox-root" className="min-h-screen bg-[#f0f2f5] text-slate-800 flex flex-col font-sans select-none antialiased">
       {/* --- Global Header Bar --- */}
-      <header id="sandbox-header" className="bg-slate-950 border-b border-slate-800 px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <header id="sandbox-header" className="bg-white border-b border-slate-200 px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="bg-emerald-500 text-slate-950 p-2 rounded-lg font-bold flex items-center justify-center">
+          <div className="bg-blue-600 text-white p-2 rounded-lg font-bold flex items-center justify-center shadow-md">
             <Smartphone className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="font-display font-bold text-lg text-emerald-400 tracking-tight flex items-center gap-2">
+            <h1 className="font-display font-bold text-lg text-slate-800 tracking-tight flex items-center gap-2">
               SmartTechPro PayPal WhatsApp Gateway Pro
-              <span className="text-xs bg-slate-800 text-emerald-300 font-mono px-2 py-0.5 rounded border border-emerald-500/25">
+              <span className="text-[11px] bg-slate-100 text-slate-700 font-mono px-2 py-0.5 rounded border border-slate-200">
                 v1.0.0 (HPOS Production-Ready)
               </span>
             </h1>
-            <p className="text-xs text-slate-400">Interactive Developer Sandbox, WooCommerce Control Panel, & ZIP Compiler</p>
+            <p className="text-xs text-slate-500">Interactive Developer Sandbox, WooCommerce Control Panel, & ZIP Compiler</p>
           </div>
         </div>
 
@@ -433,21 +434,21 @@ export default function App() {
           id="btn-compiler"
           onClick={triggerPackageDownload}
           disabled={isZipping}
-          className="relative overflow-hidden group bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold px-5 py-2.5 rounded-lg text-sm flex items-center gap-2.5 shadow-lg shadow-emerald-500/10 active:scale-95 transition-all self-start md:self-auto cursor-pointer"
+          className="relative overflow-hidden group bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 text-white font-semibold px-5 py-2.5 rounded-lg text-sm flex items-center gap-2.5 shadow-md shadow-blue-500/10 active:scale-95 transition-all self-start md:self-auto cursor-pointer"
         >
           {isZipping ? (
             <>
-              <RefreshCw className="w-4 h-4 animate-spin text-slate-900" />
+              <RefreshCw className="w-4 h-4 animate-spin text-white" />
               <span>Packaging Scripts...</span>
             </>
           ) : wasZipDownloaded ? (
             <>
-              <Check className="w-4 h-4 text-emerald-950 stroke-[3px]" />
-              <span className="text-emerald-950">gateway-plugin.zip Downloaded!</span>
+              <Check className="w-4 h-4 text-emerald-250 stroke-[3px]" />
+              <span className="text-white">gateway-plugin.zip Downloaded!</span>
             </>
           ) : (
             <>
-              <Download className="w-4 h-4 text-slate-900 transition-transform group-hover:translate-y-0.5" />
+              <Download className="w-4 h-4 text-white transition-transform group-hover:translate-y-0.5" />
               <span>Compile & Download WordPress Plugin ZIP</span>
             </>
           )}
@@ -458,15 +459,15 @@ export default function App() {
       <div id="sandbox-layout" className="flex-1 flex flex-col lg:flex-row min-h-0 overflow-hidden">
         
         {/* --- Left Column Sidebar (Config Setting Inputs | Place Orders Form | Coder Browsing) --- */}
-        <aside id="sandbox-left-col" className="w-full lg:w-[380px] bg-slate-950/85 border-b lg:border-b-0 lg:border-r border-slate-800 flex flex-col shrink-0">
+        <aside id="sandbox-left-col" className="w-full lg:w-[380px] bg-[#1e1e2d] text-white border-b lg:border-b-0 lg:border-r border-slate-705/40 flex flex-col shrink-0">
           
           {/* Vertical selectors */}
-          <div className="flex border-b border-slate-800 bg-slate-950/60 p-1 text-xs font-semibold">
+          <div className="flex border-b border-slate-800 bg-[#151521] p-1 text-xs font-semibold">
             <button
               id="left-tab-settings"
-              onClick={() => setActiveLeftTab("settings")}
+               onClick={() => setActiveLeftTab("settings")}
               className={`flex-1 py-2.5 rounded text-center flex items-center justify-center gap-2 transition-all cursor-pointer ${
-                activeLeftTab === "settings" ? "bg-slate-800 text-emerald-400 border border-slate-700/50" : "text-slate-400 hover:text-slate-200"
+                activeLeftTab === "settings" ? "bg-blue-600 text-white shadow-sm font-bold" : "text-slate-400 hover:text-slate-200"
               }`}
             >
               <Settings className="w-3.5 h-3.5" />
@@ -474,9 +475,9 @@ export default function App() {
             </button>
             <button
               id="left-tab-checkout"
-              onClick={() => setActiveLeftTab("checkout")}
+               onClick={() => setActiveLeftTab("checkout")}
               className={`flex-1 py-2.5 rounded text-center flex items-center justify-center gap-2 transition-all cursor-pointer ${
-                activeLeftTab === "checkout" ? "bg-slate-800 text-emerald-400 border border-slate-700/50" : "text-slate-400 hover:text-slate-200"
+                activeLeftTab === "checkout" ? "bg-blue-600 text-white shadow-sm font-bold" : "text-slate-400 hover:text-slate-200"
               }`}
             >
               <ShoppingCart className="w-3.5 h-3.5" />
@@ -484,9 +485,9 @@ export default function App() {
             </button>
             <button
               id="left-tab-coder"
-              onClick={() => setActiveLeftTab("coder")}
+               onClick={() => setActiveLeftTab("coder")}
               className={`flex-1 py-2.5 rounded text-center flex items-center justify-center gap-2 transition-all cursor-pointer ${
-                activeLeftTab === "coder" ? "bg-slate-800 text-emerald-400 border border-slate-700/50" : "text-slate-400 hover:text-slate-200"
+                activeLeftTab === "coder" ? "bg-blue-600 text-white shadow-sm font-bold" : "text-slate-400 hover:text-slate-200"
               }`}
             >
               <FileCode className="w-3.5 h-3.5" />
@@ -506,15 +507,15 @@ export default function App() {
                   transition={{ duration: 0.15 }}
                   className="space-y-4"
                 >
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                    <h2 className="font-semibold text-slate-200 flex items-center gap-2 text-xs uppercase tracking-wider text-emerald-500">
+                  <div className="flex items-center justify-between pb-2 border-b border-slate-750">
+                    <h2 className="font-semibold text-slate-200 flex items-center gap-2 text-xs uppercase tracking-wider text-blue-400">
                       WooCommerce Gateway Config
                     </h2>
                     <span className="text-xs bg-slate-800 px-2 py-0.5 text-slate-400 rounded">Option Table</span>
                   </div>
 
                   {/* Setting Toggle gateway */}
-                  <div className="flex items-center justify-between p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                  <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#151521] border border-slate-700/50">
                     <div>
                       <span className="font-semibold text-xs block text-slate-200">Enable Gateway</span>
                       <span className="text-[10px] text-slate-400">Activate manual payment checkout</span>
@@ -526,7 +527,7 @@ export default function App() {
                         onChange={(e) => setEnabled(e.target.checked)} 
                         className="sr-only peer" 
                       />
-                      <div className="w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-slate-900 after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                      <div className="w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-slate-900 after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
                     </label>
                   </div>
 
@@ -537,7 +538,7 @@ export default function App() {
                       type="text" 
                       value={gatewayTitle} 
                       onChange={(e) => setGatewayTitle(e.target.value)}
-                      className="w-full bg-slate-900 border border-slate-800 px-3 py-2 rounded text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                      className="w-full bg-[#151521] border border-slate-700/55 px-3 py-2 rounded text-xs text-slate-205 focus:outline-none focus:border-blue-550"
                     />
                   </div>
 
@@ -548,7 +549,7 @@ export default function App() {
                       value={gatewayDescription} 
                       onChange={(e) => setGatewayDescription(e.target.value)}
                       rows={3}
-                      className="w-full bg-slate-900 border border-slate-800 p-2.5 rounded text-xs text-slate-200 focus:outline-none focus:border-emerald-500 resize-none"
+                      className="w-full bg-[#151521] border border-slate-700/55 p-2.5 rounded text-xs text-slate-205 focus:outline-none focus:border-blue-550 resize-none"
                     />
                   </div>
 
@@ -559,7 +560,7 @@ export default function App() {
                       type="text" 
                       value={supportName} 
                       onChange={(e) => setSupportName(e.target.value)}
-                      className="w-full bg-slate-900 border border-slate-800 px-3 py-2 rounded text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                      className="w-full bg-[#151521] border border-slate-700/55 px-3 py-2 rounded text-xs text-slate-205 focus:outline-none focus:border-blue-550"
                     />
                   </div>
 
@@ -571,7 +572,7 @@ export default function App() {
                       value={supportPhone} 
                       onChange={(e) => setSupportPhone(e.target.value)}
                       placeholder="+2348012345678"
-                      className="w-full bg-slate-900 border border-slate-800 px-3 py-2 rounded text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                      className="w-full bg-[#151521] border border-slate-700/55 px-3 py-2 rounded text-xs text-slate-205 focus:outline-none focus:border-blue-550"
                     />
                   </div>
 
@@ -582,7 +583,7 @@ export default function App() {
                       type="email" 
                       value={paypalEmail} 
                       onChange={(e) => setPaypalEmail(e.target.value)}
-                      className="w-full bg-slate-900 border border-slate-800 px-3 py-2 rounded text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                      className="w-full bg-[#151521] border border-slate-700/55 px-3 py-2 rounded text-xs text-slate-205 focus:outline-none focus:border-blue-550"
                     />
                   </div>
 
@@ -593,7 +594,7 @@ export default function App() {
                       value={thankYouMessage} 
                       onChange={(e) => setThankYouMessage(e.target.value)}
                       rows={3}
-                      className="w-full bg-slate-900 border border-slate-800 p-2.5 rounded text-xs text-slate-200 focus:outline-none focus:border-emerald-500 resize-none font-sans"
+                      className="w-full bg-[#151521] border border-slate-700/55 p-2.5 rounded text-xs text-slate-205 focus:outline-none focus:border-blue-550 resize-none font-sans"
                     />
                   </div>
 
@@ -605,18 +606,18 @@ export default function App() {
                       value={customTemplate} 
                       onChange={(e) => setCustomTemplate(e.target.value)}
                       rows={7}
-                      className="w-full bg-slate-900 border border-slate-800 p-2.5 rounded font-mono text-[11px] text-emerald-300 focus:outline-none focus:border-emerald-500 resize-y"
+                      className="w-full bg-[#151521] border border-slate-700/55 p-2.5 rounded font-mono text-[11px] text-blue-400 focus:outline-none focus:border-blue-550 resize-y"
                     />
                   </div>
 
                   {/* Toggle boxes */}
-                  <div className="space-y-2 pt-2 border-t border-slate-800">
+                  <div className="space-y-2 pt-2 border-t border-slate-755">
                     <label className="flex items-center gap-2.5 text-xs text-slate-300 cursor-pointer">
                       <input 
                         type="checkbox" 
                         checked={enableLogging} 
                         onChange={(e) => setEnableLogging(e.target.checked)} 
-                        className="rounded border-slate-800 text-emerald-500 focus:ring-slate-900 bg-slate-900"
+                        className="rounded border-slate-700 text-blue-500 focus:ring-slate-800 bg-[#151521]"
                       />
                       <span>Enable custom SQL DB Logging (<code>wp_stpw_logs</code>)</span>
                     </label>
@@ -626,7 +627,7 @@ export default function App() {
                         type="checkbox" 
                         checked={enableCustomerEmails} 
                         onChange={(e) => setEnableCustomerEmails(e.target.checked)} 
-                        className="rounded border-slate-800 text-emerald-500 focus:ring-slate-900 bg-slate-900"
+                        className="rounded border-slate-700 text-blue-500 focus:ring-slate-800 bg-[#151521]"
                       />
                       <span>Enable custom status Customer Emails</span>
                     </label>
@@ -636,7 +637,7 @@ export default function App() {
                         type="checkbox" 
                         checked={enableAdminEmails} 
                         onChange={(e) => setEnableAdminEmails(e.target.checked)} 
-                        className="rounded border-slate-800 text-emerald-500 focus:ring-slate-900 bg-slate-900"
+                        className="rounded border-slate-700 text-blue-500 focus:ring-slate-800 bg-[#151521]"
                       />
                       <span>Enable Admin Request Email Alerts</span>
                     </label>
@@ -653,11 +654,11 @@ export default function App() {
                   transition={{ duration: 0.15 }}
                   className="space-y-4"
                 >
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                    <h2 className="font-semibold text-slate-200 flex items-center gap-2 text-xs uppercase tracking-wider text-yellow-500">
+                  <div className="flex items-center justify-between pb-2 border-b border-slate-750">
+                    <h2 className="font-semibold text-slate-200 flex items-center gap-2 text-xs uppercase tracking-wider text-blue-400">
                       WooCommerce Checkout Simulation
                     </h2>
-                    <span className="text-xs bg-slate-900 border border-yellow-500/20 text-yellow-400 font-mono px-2 py-0.5 rounded">Storefront</span>
+                    <span className="text-xs bg-[#151521] border border-blue-500/20 text-blue-400 font-mono px-2 py-0.5 rounded">Storefront</span>
                   </div>
 
                   {!enabled ? (
@@ -666,12 +667,12 @@ export default function App() {
                         <AlertOctagon className="w-4 h-4 shrink-0" />
                         <span>Payment Gateway Disabled</span>
                       </div>
-                      <p className="text-slate-300">You have turned off the gateway under settings tab. Re-enable to test customer redirects!</p>
+                      <p className="text-slate-350">You have turned off the gateway under settings tab. Re-enable to test customer redirects!</p>
                     </div>
                   ) : (
                     <div className="space-y-4">
                       {/* Products select checkbox mockup */}
-                      <div className="bg-slate-900 p-3 rounded-lg border border-slate-800 space-y-2">
+                      <div className="bg-[#151521] p-3 rounded-lg border border-slate-700/50 space-y-2">
                         <span className="text-xs block font-bold text-slate-300 text-[11px] uppercase tracking-wider">Configure Shopping Cart:</span>
                         
                         <label className="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
@@ -685,11 +686,11 @@ export default function App() {
                                 setSelectedProducts(prev => prev.filter(p => p !== "Woo Canvas bag"));
                               }
                             }}
-                            className="rounded border-slate-800 text-emerald-500 focus:ring-slate-900 bg-slate-900"
+                            className="rounded border-slate-700 text-blue-500 focus:ring-slate-800 bg-[#151521]"
                           />
                           <div className="flex-1 flex justify-between">
                             <span>Woo Canvas bag</span>
-                            <span className="text-emerald-500 font-mono">$120</span>
+                            <span className="text-blue-400 font-mono font-bold">$120</span>
                           </div>
                         </label>
 
@@ -704,17 +705,17 @@ export default function App() {
                                 setSelectedProducts(prev => prev.filter(p => p !== "Premium Mug"));
                               }
                             }}
-                            className="rounded border-slate-800 text-emerald-500 focus:ring-slate-900 bg-slate-900"
+                            className="rounded border-slate-700 text-blue-500 focus:ring-slate-805 bg-[#151521]"
                           />
                           <div className="flex-1 flex justify-between">
                             <span>Premium Mug</span>
-                            <span className="text-emerald-500 font-mono">$30</span>
+                            <span className="text-blue-400 font-mono font-bold">$30</span>
                           </div>
                         </label>
 
-                        <div className="pt-2 border-t border-slate-800 flex justify-between text-xs font-bold font-mono text-slate-200">
+                        <div className="pt-2 border-t border-slate-750 flex justify-between text-xs font-bold font-mono text-slate-200">
                           <span>Subtotal:</span>
-                          <span className="text-emerald-400">
+                          <span className="text-blue-400">
                             ${selectedProducts.includes("Woo Canvas bag") && selectedProducts.includes("Premium Mug") ? 150 : selectedProducts.includes("Woo Canvas bag") ? 120 : selectedProducts.includes("Premium Mug") ? 30 : 0}
                           </span>
                         </div>
@@ -726,54 +727,54 @@ export default function App() {
                         
                         <div className="grid grid-cols-2 gap-2">
                           <div className="space-y-1">
-                            <label className="text-[11px] text-slate-400 block">First Name</label>
+                            <label className="text-[11px] text-slate-400 block font-semibold">First Name</label>
                             <input 
                               type="text" 
                               value={custFirstName} 
                               onChange={(e) => setCustFirstName(e.target.value)}
-                              className="w-full bg-slate-900 border border-slate-800 px-3 py-1.5 rounded text-xs text-slate-200 focus:outline-none focus:border-yellow-500"
+                              className="w-full bg-[#151521] border border-slate-700/50 px-3 py-1.5 rounded text-xs text-slate-200 focus:outline-none focus:border-blue-500"
                             />
                           </div>
                           <div className="space-y-1">
-                            <label className="text-[11px] text-slate-400 block">Last Name</label>
+                            <label className="text-[11px] text-slate-400 block font-semibold">Last Name</label>
                             <input 
                               type="text" 
                               value={custLastName} 
                               onChange={(e) => setCustLastName(e.target.value)}
-                              className="w-full bg-slate-900 border border-slate-800 px-3 py-1.5 rounded text-xs text-slate-200 focus:outline-none focus:border-yellow-500"
+                              className="w-full bg-[#151521] border border-slate-700/50 px-3 py-1.5 rounded text-xs text-slate-200 focus:outline-none focus:border-blue-500"
                             />
                           </div>
                         </div>
 
                         <div className="space-y-1">
-                          <label className="text-[11px] text-slate-400 block">Customer Email address (Inbox notifications)</label>
+                          <label className="text-[11px] text-slate-400 block font-semibold">Customer Email address (Inbox notifications)</label>
                           <input 
                             type="email" 
                             value={custEmail} 
                             onChange={(e) => setCustEmail(e.target.value)}
-                            className="w-full bg-slate-900 border border-slate-800 px-3 py-1.5 rounded text-xs text-slate-200 focus:outline-none focus:border-yellow-500"
+                            className="w-full bg-[#151521] border border-slate-700/50 px-3 py-1.5 rounded text-xs text-slate-200 focus:outline-none focus:border-blue-500"
                           />
                         </div>
 
                         <div className="space-y-1">
-                          <label className="text-[11px] text-slate-400 block">Customer WhatsApp Mobile No</label>
+                          <label className="text-[11px] text-slate-400 block font-semibold">Customer WhatsApp Mobile No</label>
                           <input 
                             type="text" 
                             value={custPhone} 
                             onChange={(e) => setCustPhone(e.target.value)}
-                            className="w-full bg-slate-900 border border-slate-800 px-3 py-1.5 rounded text-xs text-slate-200 focus:outline-none focus:border-yellow-500"
+                            className="w-full bg-[#151521] border border-slate-700/50 px-3 py-1.5 rounded text-xs text-slate-200 focus:outline-none focus:border-blue-500"
                           />
                         </div>
                       </div>
 
                       {/* Payment gate option mock selected */}
-                      <div className="bg-slate-900 p-3 rounded-lg border-2 border-emerald-500/30 bg-emerald-500/5 space-y-2 mt-4">
-                        <div className="flex items-center justify-between text-xs font-semibold text-emerald-400">
+                      <div className="bg-[#151521] p-3 rounded-lg border-2 border-blue-550/20 bg-blue-500/5 space-y-2 mt-4">
+                        <div className="flex items-center justify-between text-xs font-semibold text-blue-400">
                           <span className="flex items-center gap-2">
-                            <span className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse" />
+                            <span className="w-2.5 h-2.5 bg-blue-500 rounded-full animate-pulse" />
                             {gatewayTitle}
                           </span>
-                          <span className="text-[10px] bg-emerald-500/10 text-emerald-300 font-mono px-1.5 py-0.5 rounded border border-emerald-500/20">Custom Gateway</span>
+                          <span className="text-[10px] bg-blue-550/10 text-blue-300 font-mono px-1.5 py-0.5 rounded border border-blue-550/20">Custom Gateway</span>
                         </div>
                         <p className="text-[11px] text-slate-300 leading-relaxed italic pr-2">
                           "{gatewayDescription}"
@@ -784,7 +785,7 @@ export default function App() {
                       <button
                         onClick={handlePlaceSimulatedOrder}
                         disabled={selectedProducts.length === 0}
-                        className="w-full py-3 bg-yellow-500 hover:bg-yellow-400 disabled:opacity-40 text-slate-950 font-bold rounded-lg text-xs uppercase tracking-wider shadow-lg hover:shadow-yellow-500/10 active:scale-95 transition-all text-center cursor-pointer"
+                        className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-800 disabled:opacity-40 text-white font-bold rounded-lg text-xs uppercase tracking-wider shadow-lg active:scale-95 transition-all text-center cursor-pointer"
                       >
                         Place Order (Simulate Redirect)
                       </button>
@@ -802,21 +803,21 @@ export default function App() {
                   transition={{ duration: 0.15 }}
                   className="space-y-4"
                 >
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                    <h2 className="font-semibold text-slate-200 flex items-center gap-2 text-xs uppercase tracking-wider text-purple-400">
+                  <div className="flex items-center justify-between pb-2 border-b border-slate-755">
+                    <h2 className="font-semibold text-slate-200 flex items-center gap-2 text-xs uppercase tracking-wider text-blue-400">
                       Plugin File Directory
                     </h2>
-                    <span className="text-[10px] bg-slate-900 text-purple-300 font-mono px-2 py-0.5 rounded border border-purple-500/20">PHP Classes</span>
+                    <span className="text-[10px] bg-slate-900 text-blue-300 font-mono px-2 py-0.5 rounded border border-blue-500/20">PHP Classes</span>
                   </div>
 
                   <p className="text-[11px] text-slate-400">
                     Below are the files we authored to construct this WooCommerce plugin inside this workspace container. Select a file to inspect its source code.
                   </p>
 
-                  <div className="space-y-1 bg-slate-950 p-2.5 rounded-lg border border-slate-800 divide-y divide-slate-900 max-h-[460px] overflow-y-auto">
+                  <div className="space-y-1 bg-slate-950 p-2.5 rounded-lg border border-slate-700/50 divide-y divide-slate-850 max-h-[460px] overflow-y-auto">
                     {/* Main directory row */}
                     <div className="flex items-center gap-2 p-1.5 text-xs text-slate-300 font-bold">
-                      <Folder className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <Folder className="w-4 h-4 text-blue-500 shrink-0" />
                       <span>smarttechpro-paypal-whatsapp-gateway-pro/</span>
                     </div>
 
@@ -827,7 +828,7 @@ export default function App() {
                           key={file.path}
                           onClick={() => setSelectedFile(file)}
                           className={`w-full text-left p-1.5 rounded flex items-center gap-2 transition-all cursor-pointer ${
-                            selectedFile.path === file.path ? "bg-purple-950/55 text-purple-300 border-l-2 border-purple-500" : "text-slate-400 hover:text-slate-200"
+                            selectedFile.path === file.path ? "bg-blue-955/50 text-blue-300 border-l-2 border-blue-500" : "text-slate-400 hover:text-slate-200"
                           }`}
                         >
                           <FileCode className="w-3.5 h-3.5" />
@@ -847,7 +848,7 @@ export default function App() {
                             key={file.path}
                             onClick={() => setSelectedFile(file)}
                             className={`w-full text-left p-1 rounded flex items-center gap-2 transition-all cursor-pointer ${
-                              selectedFile.path === file.path ? "bg-purple-950/55 text-purple-300 border-l-2 border-purple-500" : "text-slate-400 hover:text-slate-200"
+                              selectedFile.path === file.path ? "bg-blue-955/50 text-blue-300 border-l-2 border-blue-500" : "text-slate-400 hover:text-slate-200"
                             }`}
                           >
                             <FileCode className="w-3 h-3 text-slate-500" />
@@ -868,7 +869,7 @@ export default function App() {
                             key={file.path}
                             onClick={() => setSelectedFile(file)}
                             className={`w-full text-left p-1 rounded flex items-center gap-2 transition-all cursor-pointer ${
-                              selectedFile.path === file.path ? "bg-purple-950/55 text-purple-300 border-l-2 border-purple-500" : "text-slate-400 hover:text-slate-200"
+                              selectedFile.path === file.path ? "bg-blue-955/50 text-blue-300 border-l-2 border-blue-500" : "text-slate-400 hover:text-slate-200"
                             }`}
                           >
                             <FileCode className="w-3 h-3 text-slate-500" />
@@ -889,7 +890,7 @@ export default function App() {
                             key={file.path}
                             onClick={() => setSelectedFile(file)}
                             className={`w-full text-left p-1 rounded flex items-center gap-2 transition-all cursor-pointer ${
-                              selectedFile.path === file.path ? "bg-purple-950/55 text-purple-300 border-l-2 border-purple-500" : "text-slate-400 hover:text-slate-200"
+                              selectedFile.path === file.path ? "bg-blue-955/50 text-blue-300 border-l-2 border-blue-500" : "text-slate-400 hover:text-slate-200"
                             }`}
                           >
                             <FileCode className="w-3 h-3 text-slate-500" />
@@ -906,21 +907,21 @@ export default function App() {
         </aside>
 
         {/* --- Middle Workspace: Simulated WordPress WooCommerce Admin Panel --- */}
-        <section id="sandbox-mid-col" className="flex-1 bg-slate-900 flex flex-col min-w-0 overflow-hidden">
+        <section id="sandbox-mid-col" className="flex-1 bg-[#0c0c14] flex flex-col min-w-0 overflow-hidden">
           
           {/* Simulated WordPress header tabs */}
-          <div className="bg-slate-950 border-b border-slate-800 px-6 py-2 flex flex-wrap items-center justify-between gap-4 shrink-0 text-xs">
-            <div className="flex items-center gap-1.5 font-bold tracking-tight text-white py-1">
-              <Laptop className="w-4 h-4 text-blue-400" />
+          <div className="bg-[#0f0f1c] border-b border-slate-800 px-5 py-2.5 flex flex-wrap items-center justify-between gap-4 shrink-0 text-xs">
+            <div className="flex items-center gap-1.5 font-semibold tracking-tight text-slate-200 py-1">
+              <Laptop className="w-4 h-4 text-blue-500 animate-pulse" />
               <span>WordPress / WooCommerce Admin Console</span>
             </div>
 
-            <div className="flex items-center gap-2 bg-slate-900 p-1 rounded border border-slate-800">
+            <div className="flex items-center gap-1.5 bg-[#171726] p-1 rounded border border-slate-705/30">
               <button
                 id="mid-tab-overview"
                 onClick={() => setActiveMiddleTab("overview")}
-                className={`px-3 py-1.5 rounded font-medium transition-all cursor-pointer ${
-                  activeMiddleTab === "overview" ? "bg-emerald-500 text-slate-950 shadow" : "text-slate-400 hover:text-slate-200"
+                className={`px-3 py-1.5 rounded text-xs font-semibold transition-all cursor-pointer ${
+                  activeMiddleTab === "overview" ? "bg-blue-600 text-white shadow-sm" : "text-slate-400 hover:text-slate-200 hover:bg-[#1c1c2d]"
                 }`}
               >
                 Dashboard Widgets
@@ -928,8 +929,8 @@ export default function App() {
               <button
                 id="mid-tab-orders"
                 onClick={() => setActiveMiddleTab("orders")}
-                className={`px-3 py-1.5 rounded font-medium transition-all cursor-pointer ${
-                  activeMiddleTab === "orders" ? "bg-emerald-500 text-slate-950 shadow" : "text-slate-400 hover:text-slate-200"
+                className={`px-3 py-1.5 rounded text-xs font-semibold transition-all cursor-pointer ${
+                  activeMiddleTab === "orders" ? "bg-blue-600 text-white shadow-sm" : "text-slate-400 hover:text-slate-200 hover:bg-[#1c1c2d]"
                 }`}
               >
                 PayPal Orders Grid
@@ -937,24 +938,24 @@ export default function App() {
               <button
                 id="mid-tab-logs"
                 onClick={() => setActiveMiddleTab("logs")}
-                className={`px-3 py-1.5 rounded font-medium transition-all cursor-pointer relative ${
-                  activeMiddleTab === "logs" ? "bg-emerald-500 text-slate-950 shadow" : "text-slate-400 hover:text-slate-200"
+                className={`px-3 py-1.5 rounded text-xs font-semibold transition-all cursor-pointer relative ${
+                  activeMiddleTab === "logs" ? "bg-blue-600 text-white shadow-sm" : "text-slate-400 hover:text-slate-200 hover:bg-[#1c1c2d]"
                 }`}
               >
-                SQL DB Logs: wp_stpw_logs
+                SQL DB Logs
                 <span className="absolute -top-1 -right-1 flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                 </span>
               </button>
               <button
                 id="mid-tab-emails"
                 onClick={() => setActiveMiddleTab("emails")}
-                className={`px-3 py-1.5 rounded font-medium transition-all cursor-pointer ${
-                  activeMiddleTab === "emails" ? "bg-emerald-500 text-slate-950 shadow" : "text-slate-400 hover:text-slate-200"
+                className={`px-3 py-1.5 rounded text-xs font-semibold transition-all cursor-pointer ${
+                  activeMiddleTab === "emails" ? "bg-blue-600 text-white shadow-sm" : "text-slate-400 hover:text-slate-200 hover:bg-[#1c1c2d]"
                 }`}
               >
-                Emails Output Visualizer
+                Emails Visualizer
               </button>
             </div>
           </div>
@@ -969,87 +970,87 @@ export default function App() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -5 }}
                   transition={{ duration: 0.15 }}
-                  className="space-y-6"
+                  className="space-y-4"
                 >
-                  <div className="bg-slate-950 p-4 rounded-lg border border-slate-800">
-                    <h2 className="font-display font-medium text-slate-200 text-sm tracking-tight text-emerald-400 uppercase text-[11px] tracking-widest">
+                  <div className="bg-[#131322] p-4 rounded border-l-4 border-blue-600 border border-slate-700/50">
+                    <h2 className="font-semibold text-blue-400 text-xs tracking-widest uppercase text-[10px]">
                       Dashboard Analytics Feed
                     </h2>
-                    <h3 className="text-xl font-display font-bold text-slate-100 mt-1">SmartTechPro PayPal WhatsApp</h3>
-                    <p className="text-xs text-slate-400">Manual review pipeline logs. Summary of custom state statistics.</p>
+                    <h3 className="text-lg font-bold text-slate-105 mt-1">SmartTechPro PayPal WhatsApp</h3>
+                    <p className="text-xs text-slate-400 mt-0.5">Manual review pipeline logs. Summary of custom state statistics.</p>
                   </div>
 
                   {/* Six Analytical Widgets */}
-                  <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
                     
                     {/* Widget Awaiting */}
-                    <div className="bg-slate-950/85 p-4 rounded-xl border-l-[3px] border-amber-500 border-r border-y border-slate-800 shadow relative">
-                      <div className="flex items-center justify-between text-slate-400 mb-2">
-                        <span className="text-xs font-semibold block text-[11px] uppercase tracking-wider">Awaiting PayPal</span>
-                        <ShoppingCart className="w-4 h-4 text-amber-500" />
+                    <div className="bg-[#12121e] p-3 rounded border-l-[3px] border-amber-500 border-r border-y border-slate-700/50 shadow-sm relative">
+                      <div className="flex items-center justify-between text-slate-400 mb-1">
+                        <span className="text-[10px] font-bold uppercase tracking-wider block">Awaiting PayPal</span>
+                        <ShoppingCart className="w-3.5 h-3.5 text-amber-500" />
                       </div>
-                      <p className="text-2xl font-display font-bold text-slate-200">{metrics.awaiting}</p>
-                      <span className="text-[10px] text-amber-500/80 mt-1 block">wc-awaiting-paypal</span>
+                      <p className="text-xl font-bold text-slate-200">{metrics.awaiting}</p>
+                      <span className="text-[9px] text-amber-500/80 mt-0.5 block font-mono">wc-awaiting-paypal</span>
                     </div>
 
                     {/* Widget Review */}
-                    <div className="bg-slate-950/85 p-4 rounded-xl border-l-[3px] border-blue-500 border-r border-y border-slate-800 shadow">
-                      <div className="flex items-center justify-between text-slate-400 mb-2">
-                        <span className="text-xs font-semibold block text-[11px] uppercase tracking-wider">Under Review</span>
-                        <Search className="w-4 h-4 text-blue-500" />
+                    <div className="bg-[#12121e] p-3 rounded border-l-[3px] border-blue-500 border-r border-y border-slate-700/50 shadow-sm">
+                      <div className="flex items-center justify-between text-slate-400 mb-1">
+                        <span className="text-[10px] font-bold uppercase tracking-wider block">Under Review</span>
+                        <Search className="w-3.5 h-3.5 text-blue-500" />
                       </div>
-                      <p className="text-2xl font-display font-bold text-slate-200">{metrics.review}</p>
-                      <span className="text-[10px] text-blue-400 mt-1 block">wc-paypal-review</span>
+                      <p className="text-xl font-bold text-slate-200">{metrics.review}</p>
+                      <span className="text-[9px] text-blue-400 mt-0.5 block font-mono">wc-paypal-review</span>
                     </div>
 
                     {/* Widget Paid */}
-                    <div className="bg-slate-950/85 p-4 rounded-xl border-l-[3px] border-emerald-500 border-r border-y border-slate-800 shadow">
-                      <div className="flex items-center justify-between text-slate-400 mb-2">
-                        <span className="text-xs font-semibold block text-[11px] uppercase tracking-wider">Paid Orders</span>
-                        <Check className="w-4 h-4 text-emerald-500" />
+                    <div className="bg-[#12121e] p-3 rounded border-l-[3px] border-emerald-500 border-r border-y border-slate-700/50 shadow-sm">
+                      <div className="flex items-center justify-between text-slate-400 mb-1">
+                        <span className="text-[10px] font-bold uppercase tracking-wider block">Paid Orders</span>
+                        <Check className="w-3.5 h-3.5 text-emerald-555" />
                       </div>
-                      <p className="text-2xl font-display font-bold text-slate-200">{metrics.paid}</p>
-                      <span className="text-[10px] text-emerald-400 mt-1 block">wc-paypal-paid</span>
+                      <p className="text-xl font-bold text-slate-200">{metrics.paid}</p>
+                      <span className="text-[9px] text-emerald-400 mt-0.5 block font-mono">wc-paypal-paid</span>
                     </div>
 
                     {/* Widget Failed */}
-                    <div className="bg-slate-950/85 p-4 rounded-xl border-l-[3px] border-rose-500 border-r border-y border-slate-800 shadow">
-                      <div className="flex items-center justify-between text-slate-400 mb-2">
-                        <span className="text-xs font-semibold block text-[11px] uppercase tracking-wider">Failed Orders</span>
-                        <AlertOctagon className="w-4 h-4 text-rose-500" />
+                    <div className="bg-[#12121e] p-3 rounded border-l-[3px] border-rose-500 border-r border-y border-slate-700/50 shadow-sm">
+                      <div className="flex items-center justify-between text-slate-400 mb-1">
+                        <span className="text-[10px] font-bold uppercase tracking-wider block">Failed Orders</span>
+                        <AlertOctagon className="w-3.5 h-3.5 text-rose-500" />
                       </div>
-                      <p className="text-2xl font-display font-bold text-slate-200">{metrics.failed}</p>
-                      <span className="text-[10px] text-rose-400 mt-1 block">wc-paypal-failed</span>
+                      <p className="text-xl font-bold text-slate-200">{metrics.failed}</p>
+                      <span className="text-[9px] text-rose-400 mt-0.5 block font-mono">wc-paypal-failed</span>
                     </div>
 
                     {/* Widget Revenue */}
-                    <div className="bg-slate-950/85 p-4 rounded-xl border-l-[3px] border-teal-500 border-r border-y border-slate-800 shadow">
-                      <div className="flex items-center justify-between text-slate-400 mb-2">
-                        <span className="text-xs font-semibold block text-[11px] uppercase tracking-wider">Paid Revenue</span>
-                        <Coins className="w-4 h-4 text-teal-500" />
+                    <div className="bg-[#12121e] p-3 rounded border-l-[3px] border-teal-500 border-r border-y border-slate-700/50 shadow-sm">
+                      <div className="flex items-center justify-between text-slate-400 mb-1">
+                        <span className="text-[10px] font-bold uppercase tracking-wider block">Paid Revenue</span>
+                        <Coins className="w-3.5 h-3.5 text-teal-500" />
                       </div>
-                      <p className="text-2xl font-display font-bold text-slate-200">${metrics.revenue}</p>
-                      <span className="text-[10px] text-teal-400 mt-1 block">USD Consolidated</span>
+                      <p className="text-xl font-bold text-slate-200">${metrics.revenue}</p>
+                      <span className="text-[9px] text-teal-400 mt-0.5 block font-mono">USD Consolidated</span>
                     </div>
 
                     {/* Widget Conversion */}
-                    <div className="bg-slate-950/85 p-4 rounded-xl border-l-[3px] border-purple-500 border-r border-y border-slate-800 shadow">
-                      <div className="flex items-center justify-between text-slate-400 mb-2">
-                        <span className="text-xs font-semibold block text-[11px] uppercase tracking-wider">Conversion</span>
-                        <TrendingUp className="w-4 h-4 text-purple-500" />
+                    <div className="bg-[#12121e] p-3 rounded border-l-[3px] border-purple-500 border-r border-y border-slate-700/50 shadow-sm">
+                      <div className="flex items-center justify-between text-slate-400 mb-1">
+                        <span className="text-[10px] font-bold uppercase tracking-wider block">Conversion</span>
+                        <TrendingUp className="w-3.5 h-3.5 text-purple-500" />
                       </div>
-                      <p className="text-2xl font-display font-bold text-slate-200">{metrics.conversion}%</p>
-                      <span className="text-[10px] text-purple-400 mt-1 block">Paid Ratio</span>
+                      <p className="text-xl font-bold text-slate-200">{metrics.conversion}%</p>
+                      <span className="text-[9px] text-purple-400 mt-0.5 block font-mono">Paid Ratio</span>
                     </div>
                   </div>
 
                   {/* Dual Grid block */}
-                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
                     {/* Recent PayPal orders block */}
-                    <div className="bg-slate-950/70 p-5 rounded-xl border border-slate-800 space-y-4">
-                      <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                        <h3 className="font-semibold text-slate-200 text-sm tracking-tight">Recent PayPal Orders Pipeline</h3>
-                        <button onClick={() => setActiveMiddleTab("orders")} className="text-xs text-emerald-400 hover:underline">View Grid</button>
+                    <div className="bg-[#12121e] p-4 rounded border border-slate-700/50 space-y-3 shadow-sm">
+                      <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+                        <h3 className="font-bold text-slate-250 text-xs tracking-tight">Recent PayPal Orders Pipeline</h3>
+                        <button onClick={() => setActiveMiddleTab("orders")} className="text-[11px] font-bold text-blue-400 hover:underline cursor-pointer">View Grid</button>
                       </div>
 
                       <div className="divide-y divide-slate-800">
@@ -1062,10 +1063,10 @@ export default function App() {
                             <div className="flex items-center gap-3">
                               <span className="font-bold text-slate-200">${order.total}</span>
                               <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                                order.status === "wc-awaiting-paypal" ? "bg-amber-500/15 text-amber-400 border border-amber-500/25" :
-                                order.status === "wc-paypal-review" ? "bg-blue-500/15 text-blue-400 border border-blue-500/25" :
-                                order.status === "wc-paypal-paid" ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/25" :
-                                "bg-rose-500/15 text-rose-400 border border-rose-500/30"
+                                order.status === "wc-awaiting-paypal" ? "bg-amber-500/10 text-amber-400 border border-amber-500/20" :
+                                order.status === "wc-paypal-review" ? "bg-blue-500/10 text-blue-400 border border-blue-500/20" :
+                                order.status === "wc-paypal-paid" ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" :
+                                "bg-rose-500/10 text-rose-400 border border-rose-500/20"
                               }`}>
                                 {order.status.replace("wc-", "")}
                               </span>
@@ -1076,15 +1077,15 @@ export default function App() {
                     </div>
 
                     {/* Custom Logs brief tracker logs panel */}
-                    <div className="bg-slate-950/70 p-5 rounded-xl border border-slate-800 space-y-4">
-                      <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                        <h3 className="font-semibold text-slate-200 text-sm tracking-tight">Recent Database Activity Log</h3>
-                        <button onClick={() => setActiveMiddleTab("logs")} className="text-xs text-emerald-400 hover:underline">View Logs</button>
+                    <div className="bg-[#12121e] p-4 rounded border border-slate-700/50 space-y-3 shadow-sm">
+                      <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+                        <h3 className="font-bold text-slate-250 text-xs tracking-tight">Recent Database Activity Log</h3>
+                        <button onClick={() => setActiveMiddleTab("logs")} className="text-[11px] font-bold text-blue-400 hover:underline cursor-pointer">View Logs</button>
                       </div>
 
-                      <div className="space-y-3 font-mono text-[11px] max-h-[160px] overflow-y-auto pr-1">
+                      <div className="space-y-2.5 font-mono text-[11px] max-h-[160px] overflow-y-auto pr-1">
                         {logs.slice(0, 4).map(log => (
-                          <div key={log.id} className="flex gap-2.5 leading-relaxed text-slate-300">
+                          <div key={log.id} className="flex gap-2.5 leading-relaxed text-slate-300 font-mono">
                             <span className="text-slate-500 text-[10px] shrink-0">{log.timestamp.split(" ")[1]}</span>
                             <span className={`text-[9px] uppercase tracking-wider font-bold px-1.5 rounded self-start ${
                               log.action === "Paid" ? "bg-emerald-500/20 text-emerald-300" :
@@ -1092,7 +1093,7 @@ export default function App() {
                               log.action === "WhatsApp Redirect" ? "bg-green-500/20 text-green-300 animate-pulse" :
                               "bg-slate-800 text-slate-400"
                             }`}>{log.action}</span>
-                            <span className="flex-1">{log.message}</span>
+                            <span className="flex-1 text-[11px] text-slate-300">{log.message}</span>
                           </div>
                         ))}
                       </div>
@@ -1108,80 +1109,80 @@ export default function App() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -5 }}
                   transition={{ duration: 0.15 }}
-                  className="space-y-4"
+                  className="space-y-3"
                 >
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800 bg-slate-950/40 p-3 rounded-lg">
+                  <div className="flex items-center justify-between pb-2.5 border-b border-slate-800 bg-[#12121e] p-3 rounded border border-slate-700/50">
                     <div>
-                      <h3 className="font-bold text-slate-200 text-sm">PayPal WhatsApp Custom Orders Controller</h3>
-                      <p className="text-xs text-slate-400">List of orders placed through custom manual PayPal workflows. Review and update statuses below.</p>
+                      <h3 className="font-bold text-slate-200 text-xs uppercase tracking-wider">PayPal WhatsApp Orders Controller</h3>
+                      <p className="text-xs text-slate-400 mt-0.5">List of orders placed through custom manual PayPal workflows. Review and update statuses below.</p>
                     </div>
 
-                    <button onClick={() => exportSimulatedCSV("orders")} className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs rounded border border-slate-700 font-semibold cursor-pointer">Export Orders CSV</button>
+                    <button onClick={() => exportSimulatedCSV("orders")} className="px-2.5 py-1.5 bg-[#17172a] hover:bg-[#202038] text-slate-200 text-xs rounded border border-slate-700/55 font-semibold transition-all cursor-pointer">Export CSV</button>
                   </div>
 
                   {/* WooCommerce table style layout */}
-                  <div className="bg-slate-950 rounded-xl border border-slate-800 overflow-hidden">
+                  <div className="bg-[#12121e] rounded border border-slate-700/50 overflow-hidden shadow-sm">
                     <table className="w-full text-left text-xs text-slate-300">
-                      <thead className="bg-slate-900 border-b border-slate-800 font-bold text-slate-400">
+                      <thead className="bg-[#17172a] border-b border-slate-800 font-bold text-slate-450 tracking-wider uppercase text-[10px]">
                         <tr>
-                          <th className="p-4 w-16">Order ID</th>
-                          <th className="p-4 w-28">Customer</th>
-                          <th className="p-4 w-28">Email</th>
-                          <th className="p-4 w-24">Phone</th>
-                          <th className="p-4 w-20">Amount</th>
-                          <th className="p-4 w-28">Status</th>
-                          <th className="p-4 text-right">Payment Action Controls</th>
+                          <th className="p-3 w-16">ID</th>
+                          <th className="p-3 w-28">Customer</th>
+                          <th className="p-3 w-28">Email</th>
+                          <th className="p-3 w-24">Phone</th>
+                          <th className="p-3 w-20">Amount</th>
+                          <th className="p-3 w-28">Status</th>
+                          <th className="p-3 text-right">Payment Action Controls</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-800 leading-normal">
+                      <tbody className="divide-y divide-slate-800/80 leading-normal">
                         {orders.map(order => (
-                          <tr key={order.id} className="hover:bg-slate-900/50 transition-colors">
-                            <td className="p-4 font-mono font-bold text-slate-200">#{order.id}</td>
-                            <td className="p-4 font-semibold text-slate-300">{order.customerName}</td>
-                            <td className="p-4 text-slate-400">{order.email}</td>
-                            <td className="p-4 text-slate-400 font-mono">
-                              <a href={`https://wa.me/${order.phone.replace(/[^0-9]/g,"")}`} target="_blank" className="hover:underline flex items-center gap-1 text-emerald-400">
-                                <Phone className="w-3 h-3 text-emerald-500" />
+                          <tr key={order.id} className="hover:bg-[#1a1a2e]/50 transition-colors">
+                            <td className="p-3 font-mono font-bold text-slate-350">#{order.id}</td>
+                            <td className="p-3 font-bold text-slate-200">{order.customerName}</td>
+                            <td className="p-3 text-slate-400">{order.email}</td>
+                            <td className="p-3 text-slate-450 font-mono">
+                              <a href={`https://wa.me/${order.phone.replace(/[^0-9]/g,"")}`} target="_blank" className="hover:underline flex items-center gap-1.5 text-blue-400 font-semibold">
+                                <Phone className="w-3 h-3 text-blue-500" />
                                 {order.phone}
                               </a>
                             </td>
-                            <td className="p-4 font-mono font-bold text-slate-200">${order.total}</td>
-                            <td className="p-4">
-                              <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                                order.status === "wc-awaiting-paypal" ? "bg-amber-500/15 text-amber-400 border border-amber-500/25" :
-                                order.status === "wc-paypal-review" ? "bg-blue-500/15 text-blue-400 border border-blue-500/25" :
-                                order.status === "wc-paypal-paid" ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/25" :
-                                "bg-rose-500/15 text-rose-400 border border-rose-500/30"
+                            <td className="p-3 font-mono font-bold text-slate-200">${order.total}</td>
+                            <td className="p-3">
+                              <span className={`px-2 py-0.5 rounded text-[10px] font-semibold tracking-wide ${
+                                order.status === "wc-awaiting-paypal" ? "bg-amber-500/10 text-amber-400 border border-amber-500/20" :
+                                order.status === "wc-paypal-review" ? "bg-blue-500/10 text-blue-400 border border-blue-500/20" :
+                                order.status === "wc-paypal-paid" ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" :
+                                "bg-rose-500/10 text-rose-400 border border-rose-500/20"
                               }`}>
                                 {order.status === "wc-awaiting-paypal" ? "Awaiting PayPal" :
                                  order.status === "wc-paypal-review" ? "PayPal Review" :
                                  order.status === "wc-paypal-paid" ? "PayPal Paid" : "PayPal Failed"}
                               </span>
                             </td>
-                            <td className="p-4 text-right space-x-2">
+                            <td className="p-3 text-right space-x-1.5">
                               {order.status === "wc-awaiting-paypal" && (
                                 <>
                                   <button
                                     onClick={() => handleUpdateStatus(order.id, "wc-paypal-review", "Manual verification initiated")}
-                                    className="px-2 py-1 bg-blue-500 hover:bg-blue-400 text-slate-950 font-bold rounded text-[10px] uppercase shadow-sm cursor-pointer"
+                                    className="px-2 py-1 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded text-[10px] uppercase shadow-sm cursor-pointer transition-all"
                                   >
                                     Review
                                   </button>
                                   <button
                                     onClick={() => handleUpdateStatus(order.id, "wc-paypal-paid", "Manual verification cleared successfully")}
-                                    className="px-2 py-1 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded text-[10px] uppercase shadow-sm cursor-pointer"
+                                    className="px-2 py-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded text-[10px] uppercase shadow-sm cursor-pointer transition-all"
                                   >
                                     Mark Paid
                                   </button>
                                   <button
                                     onClick={() => handleUpdateStatus(order.id, "wc-paypal-failed", "PayPal transaction mismatch or rejection")}
-                                    className="px-1.5 py-1 bg-slate-800 hover:bg-slate-700 text-rose-400 border border-slate-700 font-bold rounded text-[10px] uppercase shadow-sm cursor-pointer"
+                                    className="px-1.5 py-1 bg-[#17172a] hover:bg-[#20203c] text-rose-450 border border-slate-700/60 font-bold rounded text-[10px] uppercase shadow-sm cursor-pointer transition-all"
                                   >
                                     Fail
                                   </button>
                                   <button
                                     onClick={() => handleSendReminder(order.id, order.customerName)}
-                                    className="px-2 py-1 bg-slate-800 hover:bg-slate-750 text-emerald-400 border border-emerald-500/30 hover:border-emerald-500/60 font-bold rounded text-[10px] uppercase shadow-sm cursor-pointer"
+                                    className="px-2 py-1 bg-[#17172a] hover:bg-emerald-950/20 text-emerald-400 border border-emerald-505/30 font-bold rounded text-[10px] uppercase shadow-sm cursor-pointer transition-all animate-pulse hover:animate-none"
                                   >
                                     Reminder
                                   </button>
@@ -1192,13 +1193,13 @@ export default function App() {
                                 <>
                                   <button
                                     onClick={() => handleUpdateStatus(order.id, "wc-paypal-paid", "Manual review finished - Payment confirmed")}
-                                    className="px-2.5 py-1 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded text-[10px] uppercase shadow-sm cursor-pointer"
+                                    className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded text-[10px] uppercase shadow-sm cursor-pointer transition-all"
                                   >
                                     Approve Payment
                                   </button>
                                   <button
                                     onClick={() => handleUpdateStatus(order.id, "wc-paypal-failed", "Manual review finished - Reference rejected")}
-                                    className="px-2 py-1 bg-rose-500 hover:bg-rose-400 text-slate-950 font-bold rounded text-[10px] uppercase shadow-sm cursor-pointer"
+                                    className="px-2 py-1 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded text-[10px] uppercase shadow-sm cursor-pointer transition-all"
                                   >
                                     Reject Payment
                                   </button>
@@ -1212,7 +1213,7 @@ export default function App() {
                               {order.status === "wc-paypal-failed" && (
                                 <button
                                   onClick={() => handleUpdateStatus(order.id, "wc-awaiting-paypal", "Administrator reset payment checking")}
-                                  className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold rounded text-[10px] uppercase border border-slate-700 cursor-pointer"
+                                  className="px-2 py-1 bg-[#17172a] hover:bg-[#23233c] text-slate-300 font-semibold rounded text-[10px] uppercase border border-slate-700/60 cursor-pointer"
                                 >
                                   Retry Check
                                 </button>
@@ -1233,20 +1234,20 @@ export default function App() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -5 }}
                   transition={{ duration: 0.15 }}
-                  className="space-y-4"
+                  className="space-y-3.5"
                 >
                   {/* Database analyzer header */}
-                  <div className="bg-slate-950 border border-slate-800 p-4 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <div className="bg-[#12121e] border border-slate-700/50 p-4 rounded flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
                     <div className="flex items-center gap-2">
-                      <Database className="text-emerald-400 w-5 h-5 shrink-0" />
+                      <Database className="text-blue-400 w-5 h-5 shrink-0" />
                       <div>
-                        <h3 className="font-bold text-slate-200 text-sm">System Database Table Analyzer</h3>
-                        <p className="text-xs text-slate-400">Renders live records from the custom table <code className="text-emerald-400">wp_stpw_logs</code>.</p>
+                        <h3 className="font-bold text-slate-200 text-xs uppercase tracking-wider">System Database Table Analyzer</h3>
+                        <p className="text-xs text-slate-400 mt-0.5">Renders live records from the custom table <code className="text-blue-400 font-mono">wp_stpw_logs</code>.</p>
                       </div>
                     </div>
                     <button 
                       onClick={() => exportSimulatedCSV("logs")}
-                      className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs rounded border border-slate-700 font-semibold cursor-pointer"
+                      className="px-3 py-1.5 bg-[#17172a] hover:bg-[#202038] text-slate-200 text-xs rounded border border-slate-700/50 font-semibold transition-all cursor-pointer"
                     >
                       Export Logs CSV
                     </button>
@@ -1261,7 +1262,7 @@ export default function App() {
                         placeholder="Search logs message or order id..." 
                         value={logSearch}
                         onChange={(e) => setLogSearch(e.target.value)}
-                        className="w-full bg-slate-950 border border-slate-800 rounded px-3 py-1.5 pl-9 text-xs text-slate-300 text-slate-200 focus:outline-none focus:border-emerald-500"
+                        className="w-full bg-[#12121e] border border-slate-700/55 rounded px-3 py-1.5 pl-9 text-xs text-slate-200 focus:outline-none focus:border-blue-500 transition-all font-mono"
                       />
                     </div>
 
@@ -1269,7 +1270,7 @@ export default function App() {
                       <select 
                         value={logActionFilter}
                         onChange={(e) => setLogActionFilter(e.target.value)}
-                        className="w-full bg-slate-950 border border-slate-800 rounded px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-emerald-500"
+                        className="w-full bg-[#12121e] border border-slate-700/55 rounded px-3 py-1.5 text-xs text-[#b4b4c6] focus:outline-none focus:border-blue-500 transition-all"
                       >
                         <option value="">Filter by Action Category</option>
                         <option value="WhatsApp Redirect">WhatsApp Redirect</option>
@@ -1286,7 +1287,7 @@ export default function App() {
                     <div className="flex items-center justify-end">
                       <button 
                         onClick={() => { setLogSearch(""); setLogActionFilter(""); }}
-                        className="text-xs text-slate-400 hover:text-white underline cursor-pointer"
+                        className="text-xs text-slate-400 hover:text-white underline cursor-pointer transition-all"
                       >
                         Reset All Filters
                       </button>
@@ -1294,42 +1295,42 @@ export default function App() {
                   </div>
 
                   {/* Logger Data Table */}
-                  <div className="bg-slate-950 rounded-xl border border-slate-800 overflow-hidden font-mono text-xs">
-                    <table className="w-full text-left text-slate-300">
-                      <thead className="bg-slate-900 text-slate-400 border-b border-slate-800 font-bold">
+                  <div className="bg-[#12121e] rounded border border-slate-700/50 overflow-hidden font-mono text-xs shadow-sm">
+                    <table className="w-full text-left text-slate-350">
+                      <thead className="bg-[#17172a] text-slate-400 border-b border-slate-800 font-bold uppercase text-[10px] tracking-wider">
                         <tr>
                           <th className="p-3 w-12">ID</th>
                           <th className="p-3 w-16">Order ID</th>
                           <th className="p-3 w-32">Action Code</th>
                           <th className="p-3">Details Message</th>
-                          <th className="p-3 w-16">Initor</th>
-                          <th className="p-3 w-28 text-right">Timestamp</th>
+                          <th className="p-3 w-16 font-sans font-bold">Initor</th>
+                          <th className="p-3 w-28 text-right font-mono">Timestamp</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-800 text-[11px]">
+                      <tbody className="divide-y divide-slate-800/80 text-[11px]">
                         {filteredLogs.length === 0 ? (
                           <tr>
-                            <td colspan="6" className="p-8 text-center text-slate-500">No database log entries matched search criteria.</td>
+                            <td colSpan={6} className="p-8 text-center text-slate-500">No database log entries matched search criteria.</td>
                           </tr>
                         ) : (
                           filteredLogs.map(l => (
-                            <tr key={l.id} className="hover:bg-slate-900/40 transition-colors">
-                              <td className="p-3 text-slate-500">#{l.id}</td>
-                              <td className="p-3 font-bold text-slate-200">{l.orderId > 0 ? `#${l.orderId}` : "System"}</td>
+                            <tr key={l.id} className="hover:bg-[#1a1a2e]/40 transition-colors">
+                              <td className="p-3 text-slate-500 font-mono">#{l.id}</td>
+                              <td className="p-3 font-bold text-slate-205">{l.orderId > 0 ? `#${l.orderId}` : "System"}</td>
                               <td className="p-3">
-                                <span className={`px-1.5 py-0.5 rounded text-[9px] uppercase font-bold ${
-                                  l.action === "Paid" ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/10" :
-                                  l.action === "Review" ? "bg-blue-500/20 text-blue-300 border border-blue-500/10" :
-                                  l.action === "WhatsApp Redirect" ? "bg-green-500/20 text-green-300 border border-green-500/10" :
-                                  l.action === "Failed" ? "bg-red-500/20 text-red-300 border border-red-500/10" :
+                                <span className={`px-1.5 py-0.5 rounded text-[9px] uppercase font-bold tracking-wide ${
+                                  l.action === "Paid" ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" :
+                                  l.action === "Review" ? "bg-blue-500/10 text-blue-400 border border-blue-500/20" :
+                                  l.action === "WhatsApp Redirect" ? "bg-green-500/10 text-green-300 border border-green-500/20 animate-pulse" :
+                                  l.action === "Failed" ? "bg-rose-500/10 text-rose-400 border border-rose-500/20" :
                                   "bg-slate-800 text-slate-400"
                                 }`}>
                                   {l.action}
                                 </span>
                               </td>
-                              <td className="p-3 text-slate-300 whitespace-pre-wrap pr-4">{l.message}</td>
-                              <td className="p-3 font-semibold text-slate-400">{l.user}</td>
-                              <td className="p-3 text-right text-slate-500">{l.timestamp}</td>
+                              <td className="p-3 text-slate-300 whitespace-pre-wrap pr-4 leading-relaxed font-sans">{l.message}</td>
+                              <td className="p-3 font-bold text-slate-400 font-sans">{l.user}</td>
+                              <td className="p-3 text-right text-slate-500 font-mono">{l.timestamp}</td>
                             </tr>
                           ))
                         )}
@@ -1346,14 +1347,16 @@ export default function App() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -5 }}
                   transition={{ duration: 0.15 }}
-                  className="space-y-4"
+                  className="space-y-3.5"
                 >
-                  <div className="bg-slate-950 p-4 border border-slate-800 rounded-xl">
-                    <h3 className="font-bold text-slate-200 text-sm">Transactional Alerts Visualizer</h3>
-                    <p className="text-xs text-slate-400">Select states below to preview customer transactions email outputs styled with direct WooCommerce wrappers.</p>
+                  <div className="bg-[#12121e] border border-slate-700/50 p-4 rounded flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
+                    <div>
+                      <h3 className="font-bold text-slate-200 text-xs uppercase tracking-wider">Transactional Alerts Visualizer</h3>
+                      <p className="text-xs text-slate-400 mt-0.5">Select states below to preview customer transactions email outputs styled with direct WooCommerce wrappers.</p>
+                    </div>
                   </div>
 
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap gap-2">
                     {["Payment Reviewed", "Payment Confirmed", "Payment Failed"].map(tag => (
                       <button
                         key={tag}
@@ -1367,66 +1370,66 @@ export default function App() {
                           }
                           setActiveLeftTab("coder");
                         }}
-                        className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 rounded text-xs font-semibold cursor-pointer flex items-center gap-1.5"
+                        className="px-2.5 py-1.5 bg-[#17172a] hover:bg-blue-600 hover:text-white text-slate-300 border border-slate-700/50 rounded text-xs font-semibold cursor-pointer flex items-center gap-1.5 transition-all"
                       >
-                        <Mail className="w-3.5 h-3.5" />
-                        <span>Inspect {tag} HTML PHP Code</span>
+                        <Mail className="w-3.5 h-3.5 text-blue-400" />
+                        <span>Inspect {tag} PHP Source Code</span>
                       </button>
                     ))}
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
                     {/* Review Preview */}
-                    <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3 relative overflow-hidden">
-                      <div className="absolute top-0 right-0 bg-blue-500 text-slate-950 text-[10px] px-2 py-0.5 font-bold uppercase">Review Alert</div>
-                      <span className="text-[11px] text-slate-400 block font-bold leading-normal">SUBJECT: Your PayPal Payment Is Being Reviewed</span>
-                      <div className="bg-white text-slate-800 p-4 rounded font-sans text-xs space-y-2 border border-slate-300">
-                        <div className="border-b-2 border-emerald-500 pb-2 text-center text-emerald-600 font-bold text-sm">PayPal Payment Reviewing</div>
-                        <p className="font-bold text-[11px]">Hello John,</p>
-                        <p className="text-[11px] leading-relaxed text-slate-600">We are currently reviewing your manual PayPal payment submission for authentication. Our administration is checking matching transaction record details.</p>
-                        <div className="bg-slate-50 p-2.5 rounded border border-slate-200">
-                          <strong className="block text-[10px] text-slate-700">Order Summary:</strong>
-                          <span>Order ID: #3025</span><br />
-                          <span>Total Amount: 150 USD</span><br />
-                          <span>Status: Being Reviewed</span>
+                    <div className="bg-[#12121e] p-3.5 rounded border border-slate-700/50 space-y-2.5 relative overflow-hidden shadow-sm">
+                      <div className="absolute top-0 right-0 bg-blue-650/40 text-blue-400 border-l border-b border-slate-700/50 text-[9px] px-1.5 py-0.5 font-bold uppercase tracking-wider">Review Alert</div>
+                      <span className="text-[10px] text-slate-450 block font-mono font-bold leading-normal truncate">SUBJECT: Your PayPal Payment Is Being Reviewed</span>
+                      <div className="bg-[#1a1a2e] text-slate-100 p-3.5 rounded font-sans text-xs space-y-2 border border-slate-700/55">
+                        <div className="border-b border-blue-500/40 pb-2 text-center text-blue-400 font-bold uppercase tracking-widest text-[11px]">PayPal Payment Reviewing</div>
+                        <p className="font-bold text-[11px] text-slate-205">Hello John,</p>
+                        <p className="text-[11px] leading-relaxed text-slate-400">We are currently reviewing your manual PayPal payment submission for authentication. Our administration is checking matching transaction record details.</p>
+                        <div className="bg-[#131322] p-2 rounded border border-slate-700/40 font-mono text-[10px] space-y-0.5">
+                          <strong className="block text-[9px] text-[#818cf8] uppercase tracking-wider">Order Summary:</strong>
+                          <div className="text-slate-300">Order ID: #3025</div>
+                          <div className="text-slate-300">Total Amount: 150 USD</div>
+                          <div className="text-slate-300">Status: Being Reviewed</div>
                         </div>
-                        <p className="text-[10px] text-slate-500 text-center pt-2">Thank you for shopping with My eCommerce Store</p>
+                        <p className="text-[9px] text-slate-500 text-center pt-1 italic">Thank you for shopping with Our Store</p>
                       </div>
                     </div>
 
                     {/* Paid Alert */}
-                    <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3 relative overflow-hidden">
-                      <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-[10px] px-2 py-0.5 font-bold uppercase">Payment Clear</div>
-                      <span className="text-[11px] text-slate-400 block font-bold leading-normal">SUBJECT: Payment Confirmed</span>
-                      <div className="bg-white text-slate-800 p-4 rounded font-sans text-xs space-y-2 border border-slate-300">
-                        <div className="border-b-2 border-emerald-500 pb-2 text-center text-emerald-600 font-bold text-sm">PayPal Payment Cleared</div>
-                        <p className="font-bold text-[11px]">Hello John,</p>
-                        <p className="text-[11px] leading-relaxed text-slate-600">Great news! We have successfully validated your manual PayPal payment. Your order has been marked as fully Paid and is currently proceeding to fulfillment.</p>
-                        <div className="bg-slate-50 p-2.5 rounded border border-slate-200">
-                          <strong className="block text-[10px] text-slate-700">Order & Payment Summary:</strong>
-                          <span>Order ID: #3025</span><br />
-                          <span>Total Amount: 150 USD</span><br />
-                          <span>Status: PayPal Paid - Confirmed</span>
+                    <div className="bg-[#12121e] p-3.5 rounded border border-slate-700/50 space-y-2.5 relative overflow-hidden shadow-sm">
+                      <div className="absolute top-0 right-0 bg-emerald-650/40 text-emerald-450 border-l border-b border-slate-700/50 text-[9px] px-1.5 py-0.5 font-bold uppercase tracking-wider">Payment Clear</div>
+                      <span className="text-[10px] text-slate-450 block font-mono font-bold leading-normal truncate">SUBJECT: Payment Confirmed</span>
+                      <div className="bg-[#1a1a2e] text-slate-100 p-3.5 rounded font-sans text-xs space-y-2 border border-slate-700/55">
+                        <div className="border-b border-emerald-500/40 pb-2 text-center text-emerald-400 font-bold uppercase tracking-widest text-[11px]">PayPal Payment Ready</div>
+                        <p className="font-bold text-[11px] text-slate-205">Hello John,</p>
+                        <p className="text-[11px] leading-relaxed text-slate-400">Great news! We have successfully validated your manual PayPal payment. Your order has been marked as fully Paid and is currently proceeding to fulfillment.</p>
+                        <div className="bg-[#131322] p-2 rounded border border-slate-700/40 font-mono text-[10px] space-y-0.5">
+                          <strong className="block text-[9px] text-[#818cf8] uppercase tracking-wider">Order & Payment:</strong>
+                          <div className="text-slate-300">Order ID: #3025</div>
+                          <div className="text-slate-300">Total Amount: 150 USD</div>
+                          <div className="text-slate-300">Status: PayPal Confirmed</div>
                         </div>
-                        <p className="text-[10px] text-slate-500 text-center pt-2">Thank you for shopping with My eCommerce Store</p>
+                        <p className="text-[9px] text-slate-500 text-center pt-1 italic">Thank you for shopping with Our Store</p>
                       </div>
                     </div>
 
                     {/* Failed Alert */}
-                    <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3 relative overflow-hidden">
-                      <div className="absolute top-0 right-0 bg-red-500 text-white text-[10px] px-2 py-0.5 font-bold uppercase">Rejected</div>
-                      <span className="text-[11px] text-slate-400 block font-bold leading-normal">SUBJECT: Payment Verification Failed</span>
-                      <div className="bg-white text-slate-800 p-4 rounded font-sans text-xs space-y-2 border border-slate-300">
-                        <div className="border-b-2 border-red-500 pb-2 text-center text-red-600 font-bold text-sm">Payment Verification Failed</div>
-                        <p className="font-bold text-[11px]">Hello John,</p>
-                        <p className="text-[11px] leading-relaxed text-slate-600">We were unable to verify your manual PayPal payment for this order. This might have occurred due to a transaction mismatch, canceled payment, or unrecognized reference number.</p>
-                        <div className="bg-slate-50 p-2.5 rounded border border-slate-200">
-                          <strong className="block text-[10px] text-slate-700">Unverified Details:</strong>
-                          <span>Order ID: #3025</span><br />
-                          <span>Total Amount: 150 USD</span><br />
-                          <span>Status: PayPal Failed / Rejected</span>
+                    <div className="bg-[#12121e] p-3.5 rounded border border-slate-700/50 space-y-2.5 relative overflow-hidden shadow-sm">
+                      <div className="absolute top-0 right-0 bg-rose-650/40 text-rose-450 border-l border-b border-slate-700/50 text-[9px] px-1.5 py-0.5 font-bold uppercase tracking-wider">Rejected</div>
+                      <span className="text-[10px] text-slate-450 block font-mono font-bold leading-normal truncate">SUBJECT: Payment Verification Failed</span>
+                      <div className="bg-[#1a1a2e] text-slate-100 p-3.5 rounded font-sans text-xs space-y-2 border border-slate-700/55">
+                        <div className="border-b border-rose-500/40 pb-2 text-center text-rose-400 font-bold uppercase tracking-widest text-[11px]">Verification Failed</div>
+                        <p className="font-bold text-[11px] text-slate-205">Hello John,</p>
+                        <p className="text-[11px] leading-relaxed text-slate-400">We were unable to verify your manual PayPal payment for this order. This might have occurred due to transaction details mismatch or unverified reference.</p>
+                        <div className="bg-[#131322] p-2 rounded border border-slate-700/40 font-mono text-[10px] space-y-0.5">
+                          <strong className="block text-[9px] text-[#818cf8] uppercase tracking-wider">Unverified Details:</strong>
+                          <div className="text-slate-300">Order ID: #3025</div>
+                          <div className="text-slate-300">Total Amount: 150 USD</div>
+                          <div className="text-slate-300">Status: PayPal Failed</div>
                         </div>
-                        <p className="text-[10px] text-red-500 font-semibold italic text-center pt-2">Please reach out to our active support live chat.</p>
+                        <p className="text-[9px] text-rose-400 font-semibold italic text-center pt-1 leading-tight">Please contact support chat immediately.</p>
                       </div>
                     </div>
                   </div>
@@ -1436,21 +1439,21 @@ export default function App() {
 
             {/* --- Code Inspector segment visible when active coder --- */}
             {activeLeftTab === "coder" && (
-              <div id="inspector-console" className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden mt-6 shadow-2xl flex flex-col">
-                <div className="bg-slate-900 border-b border-slate-800 px-5 py-3 flex items-center justify-between gap-4">
+              <div id="inspector-console" className="bg-[#12121e] border border-slate-700/50 rounded overflow-hidden mt-6 shadow-xl flex flex-col">
+                <div className="bg-[#17172a] border-b border-[#1c1c32] px-5 py-3 flex items-center justify-between gap-4">
                   <div className="flex items-center gap-2">
-                    <FileCode className="text-purple-400 w-4.5 h-4.5 shrink-0" />
+                    <FileCode className="text-blue-400 w-4.5 h-4.5 shrink-0" />
                     <div>
                       <span className="text-xs text-slate-400 font-bold font-mono">FILE: </span>
                       <span className="font-mono text-xs font-bold text-slate-200">smarttechpro-paypal-whatsapp-gateway-pro/{selectedFile.path}</span>
                     </div>
                   </div>
-                  <span className="text-[10px] bg-slate-950 text-purple-400 font-mono border border-purple-500/20 px-2 py-0.5 rounded">
+                  <span className="text-[10px] bg-blue-950 text-blue-400 font-mono border border-blue-500/20 px-2 py-0.5 rounded">
                     {selectedFile.language.toUpperCase()} Class Source
                   </span>
                 </div>
 
-                <div className="p-4 overflow-x-auto max-h-[400px] bg-slate-950 font-mono text-[11px] leading-relaxed text-slate-300 select-text">
+                <div className="p-4 overflow-x-auto max-h-[400px] bg-[#0c0c14] font-mono text-[11px] leading-relaxed text-slate-350 select-text">
                   <pre className="whitespace-pre">
                     <code>
                       {selectedFile.content}
@@ -1463,27 +1466,27 @@ export default function App() {
         </section>
 
         {/* --- Right Column Sidebar: Smartphone Interactive Chat Simulator --- */}
-        <aside id="sandbox-right-col" className="w-full lg:w-[350px] bg-slate-950 border-t lg:border-t-0 lg:border-l border-slate-800 flex flex-col items-center justify-center p-6 shrink-0 relative bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-slate-950">
+        <aside id="sandbox-right-col" className="w-full lg:w-[350px] bg-[#0c0c14] border-t lg:border-t-0 lg:border-l border-slate-705/30 flex flex-col items-center justify-center p-6 shrink-0 relative">
           
           <div className="text-center mb-4 leading-tight">
-            <span className="text-[10px] text-emerald-500 font-bold uppercase tracking-widest flex items-center justify-center gap-1.5 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20 shadow-sm shadow-emerald-500/5">
+            <span className="text-[10px] text-blue-400 font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 bg-blue-500/10 px-2.5 py-1 rounded-full border border-blue-500/20 shadow-sm shadow-blue-500/5 select-none">
               <Smartphone className="w-3.5 h-3.5" />
               Live Smartphone Simulator
             </span>
-            <p className="text-[11px] text-slate-400 mt-2">Placed orders dispatch immediately to this mobile visual sandbox</p>
+            <p className="text-[11px] text-slate-400 mt-2 font-medium">Placed orders dispatch immediately to this mobile visual sandbox</p>
           </div>
 
           {/* Smartphone device outer boundary frame */}
-          <div className="relative w-[280px] h-[540px] bg-slate-950 rounded-[40px] border-[8px] border-slate-800 shadow-2xl overflow-hidden flex flex-col ring-1 ring-slate-800 shadow-slate-900/40">
+          <div className="relative w-[280px] h-[540px] bg-[#12121e] rounded-[36px] border-[8px] border-[#1f1f2e] shadow-2xl overflow-hidden flex flex-col ring-1 ring-slate-750/50 shadow-slate-950/80">
             
             {/* Phone Speaker notch bar */}
-            <div className="absolute top-[4px] left-1/2 -translate-x-1/2 w-28 h-4.5 bg-slate-800 rounded-b-2xl z-40 flex items-center justify-center">
-              <div className="w-12 h-1 bg-slate-900 rounded-full" />
-              <div className="w-1.5 h-1.5 bg-slate-900 rounded-full ml-2" />
+            <div className="absolute top-[4px] left-1/2 -translate-x-1/2 w-28 h-4 bg-[#1f1f2e] rounded-b-xl z-40 flex items-center justify-center shadow-inner">
+              <div className="w-10 h-1 bg-slate-950 rounded-full" />
+              <div className="w-1.5 h-1.5 bg-slate-950 rounded-full ml-2" />
             </div>
 
             {/* Simulated Phone UI Content */}
-            <div className="flex-grow flex flex-col min-h-0 bg-slate-900 pt-7 relative text-xs">
+            <div className="flex-grow flex flex-col min-h-0 bg-[#12121e] pt-6 relative text-xs">
               <AnimatePresence mode="wait">
                 
                 {phoneScreen === "storefront" && (
@@ -1495,22 +1498,25 @@ export default function App() {
                     className="flex-1 flex flex-col p-4 justify-between"
                   >
                     <div className="space-y-4">
-                      <div className="text-center font-bold tracking-tight text-white border-b border-slate-800 pb-2">WooCommerce checkout</div>
-                      <div className="bg-slate-950 p-2.5 border border-slate-800 rounded">
-                        <span className="font-semibold text-[10px] block text-slate-300">Selected Gateway:</span>
-                        <div className="flex items-center gap-2 text-emerald-400 mt-1 font-bold">
-                          <div className="bg-emerald-500 text-slate-950 p-1 rounded">
-                            <Phone className="w-3 h-3 text-slate-950" />
+                      <div className="text-center font-bold tracking-tight text-slate-205 border-b border-slate-800 pb-2 flex items-center justify-center gap-1.5">
+                        <ShoppingBag className="w-3.5 h-3.5 text-blue-400" />
+                        <span>WooCommerce checkout</span>
+                      </div>
+                      <div className="bg-[#17172a] p-2.5 border border-slate-700/50 rounded">
+                        <span className="font-semibold text-[10px] block text-slate-400 uppercase tracking-wide">Selected Gateway</span>
+                        <div className="flex items-center gap-1.5 text-blue-400 mt-1 font-bold font-sans text-[11px]">
+                          <div className="bg-blue-500/20 text-blue-400 p-0.5 rounded border border-blue-500/20">
+                            <Phone className="w-3.5 h-3.5" />
                           </div>
-                          <span>PayPal WhatsApp manual</span>
+                          <span>PayPal WhatsApp Support</span>
                         </div>
                       </div>
 
                       <div className="space-y-1.5">
-                        <span className="font-semibold text-[10px] block text-slate-400">Products in Cart:</span>
-                        <div className="space-y-1 text-[10px] text-slate-300">
+                        <span className="font-semibold text-[10px] block text-slate-405 uppercase tracking-wide">Products in Cart</span>
+                        <div className="space-y-1 text-[10px] text-[#bcbcd0]">
                           {selectedProducts.map(p => (
-                            <div key={p} className="flex justify-between border-b border-slate-800 pb-1.5">
+                            <div key={p} className="flex justify-between border-b border-slate-800/80 pb-1.5">
                               <span>{p}</span>
                               <span className="font-bold text-white">$120</span>
                             </div>
@@ -1519,11 +1525,11 @@ export default function App() {
                       </div>
                     </div>
 
-                    <div className="space-y-2 mt-4">
-                      <p className="text-[10px] text-slate-400 text-center italic">Instructions sent over secure support portal on WhatsApp.</p>
+                    <div className="space-y-2 mt-4 text-center">
+                      <p className="text-[9px] text-slate-450 italic leading-snug">Instructions sent over secure support portal on WhatsApp chat redirect.</p>
                       <button 
                         onClick={handlePlaceSimulatedOrder}
-                        className="w-full py-2 bg-emerald-500 text-slate-900 rounded-lg text-xs font-bold uppercase tracking-wider"
+                        className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded text-xs font-bold uppercase tracking-wider transition-all shadow-md active:translate-y-px cursor-pointer"
                       >
                         Buy Now (${selectedProducts.includes("Woo Canvas bag") && selectedProducts.includes("Premium Mug") ? 150 : selectedProducts.includes("Woo Canvas bag") ? 120 : 30})
                       </button>
@@ -1537,17 +1543,17 @@ export default function App() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="flex-grow flex flex-col items-center justify-center p-4 bg-slate-950 text-center space-y-4"
+                    className="flex-grow flex flex-col items-center justify-center p-4 bg-[#0a0a0f] text-center space-y-4"
                   >
-                    <div className="bg-emerald-500/10 text-emerald-400 p-4 rounded-full border border-emerald-500/20 animate-bounce">
+                    <div className="bg-blue-500/10 text-blue-400 p-4 rounded-full border border-blue-500/20 animate-bounce">
                       <ExternalLink className="w-8 h-8" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-100 text-sm">Redirecting to WhatsApp...</h4>
-                      <p className="text-[11px] text-slate-400 mt-2">Launching wa.me API link client-side</p>
+                      <h4 className="font-bold text-slate-105 text-xs uppercase tracking-wider">Redirecting to WhatsApp...</h4>
+                      <p className="text-[11px] text-slate-400 mt-1 pb-1">Launching wa.me API link client-side</p>
                     </div>
                     <div className="w-16 h-1 bg-slate-800 rounded-full overflow-hidden">
-                      <div className="h-full bg-emerald-500 rounded-full animate-infinite-scroll w-8" />
+                      <div className="h-full bg-blue-500 rounded-full animate-infinite-scroll w-8" />
                     </div>
                   </motion.div>
                 )}
@@ -1561,13 +1567,15 @@ export default function App() {
                     className="flex-grow flex flex-col bg-[#0b141a] text-slate-100 h-full justify-between"
                   >
                     {/* Header bar WhatsApp style */}
-                    <div className="bg-[#1f2c34] p-3 px-4 flex items-center gap-2 shrink-0 border-b border-[#2a3942]">
-                      <div className="w-7 h-7 bg-emerald-500 rounded-full flex items-center justify-center font-bold text-slate-950">
-                        A
-                      </div>
-                      <div className="leading-tight shrink-0">
-                        <h4 className="font-bold text-white text-xs">{supportName}</h4>
-                        <span className="text-[9px] text-slate-400 block font-mono">PayPal manual Desk</span>
+                    <div className="bg-[#1f2c34] p-2.5 px-3.5 flex items-center justify-between shrink-0 border-b border-[#2a3942]">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6.5 h-6.5 bg-[#4f5d68] border border-slate-700 rounded-full flex items-center justify-center font-bold text-slate-100 text-[10px]">
+                          WP
+                        </div>
+                        <div className="leading-tight shrink-0">
+                          <h4 className="font-bold text-white text-[11px]">{supportName}</h4>
+                          <span className="text-[9px] text-[#25d366] block font-bold">● Support Desk Active</span>
+                        </div>
                       </div>
                     </div>
 
@@ -1576,20 +1584,20 @@ export default function App() {
                       
                       {/* Incoming Customer block */}
                       <div className="bg-[#005c4b] p-2.5 rounded-lg ml-8 rounded-tr-none text-slate-200">
-                        <pre className="whitespace-pre-wrap font-sans">
+                        <pre className="whitespace-pre-wrap font-sans text-[10px]">
                           {activeCompiledWhatsAppMessage}
                         </pre>
                         <span className="text-[9px] text-emerald-300 block text-right mt-1.5 select-none text-[9px]">14:14 ✔✔</span>
                       </div>
 
                       {/* Rep Response simulated backup instructions bubble */}
-                      <div className="bg-[#202c33] p-2.5 rounded-lg mr-8 rounded-tl-none text-slate-200">
-                        <span className="font-bold text-emerald-400 block mb-1">Rep Profile: {supportName}</span>
-                        <p className="text-[11px] font-medium leading-relaxed">
+                      <div className="bg-[#202c33] p-2.5 rounded-lg mr-8 rounded-tl-none text-slate-200 border border-[#2a3942]/60 shadow-sm">
+                        <span className="font-bold text-emerald-400 block mb-0.5 text-[10px]">Rep Profile: {supportName}</span>
+                        <p className="text-[10px] font-medium leading-relaxed">
                           Hello! To finalize payment, please send USD to our PayPal: <strong>{paypalEmail}</strong>.
                         </p>
-                        <p className="mt-1 leading-relaxed text-[10px] text-slate-400 italic">
-                          Reference: Order #3025. Send screenshot here after pay.
+                        <p className="mt-1 leading-relaxed text-[9px] text-slate-400 italic">
+                          Reference ID: Order #3025. Send screenshot here after pay.
                         </p>
                         <span className="text-[8px] text-slate-500 block text-right mt-1 font-mono">14:15</span>
                       </div>
@@ -1621,10 +1629,10 @@ export default function App() {
             </div>
             
             {/* Phone bottom bar */}
-            <div className="h-6 bg-slate-950 flex items-center justify-center shrink-0">
+            <div className="h-6 bg-[#12121e] flex items-center justify-center shrink-0 border-t border-[#1f1f2e]">
               <button 
                 onClick={() => setPhoneScreen("storefront")}
-                className="w-20 h-1 bg-slate-800 rounded-full hover:bg-slate-700 active:scale-95 transition-all cursor-pointer"
+                className="w-16 h-1 bg-[#26263b] rounded-full hover:bg-[#34344e] active:scale-95 transition-all cursor-pointer"
                 title="Reset device"
               />
             </div>
