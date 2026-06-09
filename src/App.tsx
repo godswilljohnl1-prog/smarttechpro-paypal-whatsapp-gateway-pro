@@ -69,6 +69,8 @@ export default function App() {
   const [enableLogging, setEnableLogging] = useState(true);
   const [enableCustomerEmails, setEnableCustomerEmails] = useState(true);
   const [enableAdminEmails, setEnableAdminEmails] = useState(true);
+  const [enablePaypalQr, setEnablePaypalQr] = useState(true);
+  const [paypalMeUsername, setPaypalMeUsername] = useState("smarttechpro");
 
   // --- Active Sandbox View Tabs ---
   // Left Tabs: settings | checkout | code explorer
@@ -421,8 +423,8 @@ export default function App() {
           <div>
             <h1 className="font-display font-bold text-lg text-slate-800 tracking-tight flex items-center gap-2">
               SmartTechPro PayPal WhatsApp Gateway Pro
-              <span className="text-[11px] bg-slate-100 text-slate-700 font-mono px-2 py-0.5 rounded border border-slate-200">
-                v1.0.0 (HPOS Production-Ready)
+              <span className="text-[11px] bg-indigo-50 text-indigo-700 font-mono px-2 py-0.5 rounded border border-indigo-205 font-bold uppercase">
+                v2.0.0 Stable (Integrated Dual QR)
               </span>
             </h1>
             <p className="text-xs text-slate-500">Interactive Developer Sandbox, WooCommerce Control Panel, & ZIP Compiler</p>
@@ -641,6 +643,29 @@ export default function App() {
                       />
                       <span>Enable Admin Request Email Alerts</span>
                     </label>
+
+                    <label className="flex items-center gap-2.5 text-xs text-slate-300 cursor-pointer pt-2 border-t border-slate-700/40">
+                      <input 
+                        type="checkbox" 
+                        checked={enablePaypalQr} 
+                        onChange={(e) => setEnablePaypalQr(e.target.checked)} 
+                        className="rounded border-slate-700 text-blue-500 focus:ring-slate-800 bg-[#151521]"
+                      />
+                      <span className="text-emerald-400 font-bold">Enable PayPal.Me QR Codes (v2.0)</span>
+                    </label>
+
+                    {enablePaypalQr && (
+                      <div className="space-y-1 pl-6 pb-2">
+                        <label className="text-[11px] font-semibold text-slate-300 block">PayPal.Me Handle / Username</label>
+                        <input 
+                          type="text" 
+                          value={paypalMeUsername} 
+                          onChange={(e) => setPaypalMeUsername(e.target.value)}
+                          placeholder="e.g. smarttechpro"
+                          className="w-full bg-[#151521] border border-slate-700/55 px-2.5 py-1 rounded text-[11px] text-slate-205 focus:outline-none focus:border-blue-550"
+                        />
+                      </div>
+                    )}
                   </div>
                 </motion.div>
               )}
@@ -1601,6 +1626,22 @@ export default function App() {
                         </p>
                         <span className="text-[8px] text-slate-500 block text-right mt-1 font-mono">14:15</span>
                       </div>
+
+                      {/* Version 2 Dynamic QR Bubble */}
+                      {enablePaypalQr && (
+                        <div className="bg-[#1c272e] p-2.5 rounded-lg mr-8 rounded-tl-none text-slate-200 border border-teal-500/10 shadow-md flex flex-col items-center text-center space-y-1.5 animate-fade-in">
+                          <span className="font-bold text-teal-400 text-[9px] tracking-wide uppercase">⚡ Direct PayPal Scan-and-Pay</span>
+                          <div className="bg-white p-1 rounded shadow-sm">
+                            <img 
+                              src={`https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=${encodeURIComponent(`https://www.paypal.me/${paypalMeUsername}/150USD`)}`} 
+                              alt="PayPal Pay QR" 
+                              className="w-[100px] h-[100px] rounded"
+                              referrerPolicy="no-referrer"
+                            />
+                          </div>
+                          <span className="text-[8px] text-[#25d366] font-bold">paypal.me/{paypalMeUsername}/150USD</span>
+                        </div>
+                      )}
                     </div>
 
                     {/* WhatsApp mock input bar */}

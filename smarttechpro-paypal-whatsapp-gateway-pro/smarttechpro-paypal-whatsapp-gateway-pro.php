@@ -3,7 +3,7 @@
  * Plugin Name: SmartTechPro PayPal WhatsApp Gateway Pro
  * Plugin URI: https://smarttechpro.com/plugins/paypal-whatsapp-gateway-pro
  * Description: A manual PayPal payment workflow managed through WhatsApp support for WooCommerce. Allows customers to request instructions instantly on checkout.
- * Version: 1.0.0
+ * Version: 2.0.0
  * Author: SmartTechPro
  * Author URI: https://smarttechpro.com
  * Text Domain: smarttechpro-paypal-whatsapp-gateway-pro
@@ -19,7 +19,7 @@
 defined('ABSPATH') || exit;
 
 // Constants
-define('STPW_VERSION', '1.0.0');
+define('STPW_VERSION', '2.0.0');
 define('STPW_PATH', plugin_dir_path(__FILE__));
 define('STPW_URL', plugin_dir_url(__FILE__));
 define('STPW_BASENAME', plugin_basename(__FILE__));
@@ -37,6 +37,7 @@ require_once STPW_PATH . 'includes/class-hpos.php';
 require_once STPW_PATH . 'includes/class-logger.php';
 require_once STPW_PATH . 'includes/class-order-statuses.php';
 require_once STPW_PATH . 'includes/class-whatsapp.php';
+require_once STPW_PATH . 'includes/class-settings.php';
 require_once STPW_PATH . 'includes/class-emails.php';
 require_once STPW_PATH . 'includes/class-admin-dashboard.php';
 require_once STPW_PATH . 'includes/class-admin-orders.php';

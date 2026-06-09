@@ -89,6 +89,19 @@ class STPW_Settings {
                 'label'       => __('Alert shop administrators for new PayPal requests and manual transitions', 'smarttechpro-paypal-whatsapp-gateway-pro'),
                 'default'     => 'yes'
             ],
+            'enable_paypal_qr' => [
+                'title'       => __('Enable PayPal.Me QR Code', 'smarttechpro-paypal-whatsapp-gateway-pro'),
+                'type'        => 'checkbox',
+                'label'       => __('Instantly generate and showcase a scan-to-pay PayPal.Me QR code on checkout and support redirect alerts', 'smarttechpro-paypal-whatsapp-gateway-pro'),
+                'default'     => 'yes'
+            ],
+            'paypal_me_username' => [
+                'title'       => __('PayPal.Me Username', 'smarttechpro-paypal-whatsapp-gateway-pro'),
+                'type'        => 'text',
+                'description' => __('Your PayPal.Me custom handle / username (e.g., "mybrand" or "smarttechpro"). Used to render scan-to-pay links.', 'smarttechpro-paypal-whatsapp-gateway-pro'),
+                'default'     => 'smarttechpro',
+                'desc_tip'    => true,
+            ],
         ];
     }
 }

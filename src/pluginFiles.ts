@@ -17,7 +17,7 @@ export const PLUGIN_FILES: PluginFile[] = [
  * Plugin Name: SmartTechPro PayPal WhatsApp Gateway Pro
  * Plugin URI: https://smarttechpro.com/plugins/paypal-whatsapp-gateway-pro
  * Description: A manual PayPal payment workflow managed through WhatsApp support for WooCommerce. Allows customers to request instructions instantly on checkout.
- * Version: 1.0.0
+ * Version: 2.0.0
  * Author: SmartTechPro
  * Author URI: https://smarttechpro.com
  * Text Domain: smarttechpro-paypal-whatsapp-gateway-pro
@@ -33,7 +33,7 @@ export const PLUGIN_FILES: PluginFile[] = [
 defined('ABSPATH') || exit;
 
 // Constants
-define('STPW_VERSION', '1.0.0');
+define('STPW_VERSION', '2.0.0');
 define('STPW_PATH', plugin_dir_path(__FILE__));
 define('STPW_URL', plugin_dir_url(__FILE__));
 define('STPW_BASENAME', plugin_basename(__FILE__));
@@ -594,6 +594,19 @@ class STPW_Settings {
                 'label'       => __('Alert shop administrators for new PayPal requests and manual transitions', 'smarttechpro-paypal-whatsapp-gateway-pro'),
                 'default'     => 'yes'
             ],
+            'enable_paypal_qr' => [
+                'title'       => __('Enable PayPal.Me QR Code', 'smarttechpro-paypal-whatsapp-gateway-pro'),
+                'type'        => 'checkbox',
+                'label'       => __('Instantly generate and showcase a scan-to-pay PayPal.Me QR code on checkout and support redirect alerts', 'smarttechpro-paypal-whatsapp-gateway-pro'),
+                'default'     => 'yes'
+            ],
+            'paypal_me_username' => [
+                'title'       => __('PayPal.Me Username', 'smarttechpro-paypal-whatsapp-gateway-pro'),
+                'type'        => 'text',
+                'description' => __('Your PayPal.Me custom handle / username (e.g., "mybrand" or "smarttechpro"). Used to render scan-to-pay links.', 'smarttechpro-paypal-whatsapp-gateway-pro'),
+                'default'     => 'smarttechpro',
+                'desc_tip'    => true,
+            ],
         ];
     }
 }`
@@ -710,12 +723,32 @@ class STPW_Gateway extends WC_Payment_Gateway {
 
         $whatsapp_url = STPW_WhatsApp::get_redirect_url($order);
         $message      = $this->get_option('thank_you_message');
+        $enable_qr    = $this->get_option('enable_paypal_qr', 'yes') === 'yes';
+        $paypal_user  = $this->get_option('paypal_me_username', 'smarttechpro');
         ?>
         <div class="stpw-whatsapp-thankyou-box" style="margin: 25px 0; padding: 20px; border: 2px dashed #00a884; border-radius: 8px; background-color: #f0fdf4; text-align: center;">
             <h3 style="color: #00a884; font-weight: bold; margin-bottom: 10px;">
                 <span class="dashicons dashicons-whatsapp"></span> <?php esc_html_e('PayPal WhatsApp Order Pending', 'smarttechpro-paypal-whatsapp-gateway-pro'); ?>
             </h3>
             <p><?php echo esc_html($message); ?></p>
+            
+            <?php if ($enable_qr && !empty($paypal_user)) : 
+                $total         = $order->get_total();
+                $currency      = $order->get_currency();
+                $paypal_me_url = "https://www.paypal.me/" . esc_attr($paypal_user) . "/" . esc_attr($total) . esc_attr($currency);
+                $qr_api_url    = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" . urlencode($paypal_me_url);
+                ?>
+                <div class="stpw-paypal-qr-box" style="margin: 20px auto; max-width: 320px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background: #fff; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <span style="font-weight: bold; font-size: 13px; color: #003087; display: block; margin-bottom: 8px; font-family: sans-serif;">
+                        <span class="dashicons dashicons-qr"></span> <?php esc_html_e('Scan & Pay via PayPal QR', 'smarttechpro-paypal-whatsapp-gateway-pro'); ?>
+                    </span>
+                    <img src="<?php echo esc_url($qr_api_url); ?>" style="width: 150px; height: 150px; display: block; margin: 10px auto;" alt="PayPal Pay QR" />
+                    <p style="margin: 5px 0 0 0; font-size: 11px; color: #555; line-height: 1.3; font-family: sans-serif;">
+                        <?php echo sprintf(esc_html__('PayPallink: %s', 'smarttechpro-paypal-whatsapp-gateway-pro'), '<a href="' . esc_url($paypal_me_url) . '" target="_blank" style="color: #0070ba; font-weight: bold;">paypal.me/' . esc_html($paypal_user) . '/' . esc_html($total) . esc_html($currency) . '</a>'); ?>
+                    </p>
+                </div>
+            <?php endif; ?>
+
             <div style="margin-top: 15px;">
                 <a href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" rel="noopener noreferrer" class="button alt" style="background-color: #25d366; border-color: #25d366; color: #fff; padding: 12px 24px; font-weight: bold; border-radius: 5px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width: 20px; height: 20px;" alt="WhatsApp" />
